@@ -1,0 +1,35 @@
+name: Rixor
+main: com.projectrixor.rixor.scrimmage.Scrimmage
+version: 1.2
+depend: [WorldEdit]
+author: ProjectRixor Team
+load: STARTUP
+commands:
+  setteam:
+    aliases: [st]
+    description: Set the name of a team.
+  setnext:
+    aliases: [sn]
+    description: Set the next map.
+  end:
+    aliases: [cancel]
+    description: Stop/End the game.
+  start:
+    description: Start the starting timer.
+  bb:
+    aliases: [breakblocks]
+    description: Break Blocks. (Buggy)
+  staff:
+    description: Lists off staff.
+  help:
+    description: Help on ParaPGM commands.
+  stoptheserver:
+    aliases: [sts]
+    description: Stops the server.
+  request:
+    description: Send a request to online staff.
+  match:
+    aliases: [info,next,map]
+    description: Check the map status.
+  test:
+    description: so yeah tests woo.
