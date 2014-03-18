@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.ServerLog;
 import com.projectrixor.rixor.scrimmage.map.extras.Contributor;
 import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
@@ -98,7 +98,7 @@ public class Map {
 		this.timeLimit = timeLimit;
 		this.scoreLimit = scoreLimit;
 		
-		this.board = Scrimmage.getInstance().getServer().getScoreboardManager().getNewScoreboard();
+		this.board = Rixor.getInstance().getServer().getScoreboardManager().getNewScoreboard();
 		reloadSidebar(true, null);
 	}
 	
@@ -124,7 +124,7 @@ public class Map {
 				} else if(lowest == team.getPlayers().size())
 					teams.add(team);
 		
-		return teams.get(Scrimmage.random(0, teams.size() - 1));
+		return teams.get(Rixor.random(0,teams.size()-1));
 	}
 	
 	public MapTeam getTeam(String title) {
@@ -152,7 +152,7 @@ public class Map {
 					else i = team.loadTeamObjectives(false, i);
 					//if(teams.get(teams.size() - 1) != team) {
 						i++;
-						OfflinePlayer player = Scrimmage.getInstance().getServer().getOfflinePlayer(getSpaces(i));
+						OfflinePlayer player = Rixor.getInstance().getServer().getOfflinePlayer(getSpaces(i));
 						getBoardObjective().getScore(player).setScore(i);
 						i++;
 						
@@ -170,14 +170,14 @@ public class Map {
 				this.boardObjective.setDisplaySlot(DisplaySlot.SIDEBAR);
 				
 				for(MapTeam team : getTeams()) {
-					OfflinePlayer player = Scrimmage.getInstance().getServer().getOfflinePlayer(team.getColor() + team.getDisplayName());
+					OfflinePlayer player = Rixor.getInstance().getServer().getOfflinePlayer(team.getColor() + team.getDisplayName());
 					this.boardObjective.getScore(player).setScore(1);
 				}
 				
 			}
 			
 			for(MapTeam team : getTeams()) {
-				OfflinePlayer player = Scrimmage.getInstance().getServer().getOfflinePlayer(team.getColor() + team.getDisplayName());
+				OfflinePlayer player = Rixor.getInstance().getServer().getOfflinePlayer(team.getColor() + team.getDisplayName());
 				this.boardObjective.getScore(player).setScore(team.getScore());
 				
 			}
@@ -208,31 +208,31 @@ public class Map {
 	
 	public void unload() {
 		String name = getWorld().getName();
-		Scrimmage.getInstance().getServer().unloadWorld(getWorld(), false);
+		Rixor.getInstance().getServer().unloadWorld(getWorld(), false);
 		
 		FileUtil.delete(new File(name));
 	}
 	
 	public void update() {
-		String name = "" + Scrimmage.random(1, 10000);
+		String name = "" + Rixor.random(1,10000);
 		/*
 		 * What on earth could be null there?
-		 * Scrimmage = not null (100% sure)
+		 * Rixor = not null (100% sure)
 		 * Rotation = could be null, pretty sure it ain't tho.
 		 * Nothing else could be null...
 		 */
-		update(Scrimmage.getInstance().getServer().getWorld(name) == null);
+		update(Rixor.getInstance().getServer().getWorld(name) == null);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void update(boolean load) {
 		long start = System.currentTimeMillis();
-		Scrimmage.getInstance().getLogger().info("Started loading '" + name + "'!");
-		if(Scrimmage.getRotation() == null)
-			Scrimmage.getInstance().getLogger().info("Rotation is null... WTF?!");
+		Rixor.getInstance().getLogger().info("Started loading '" + name + "'!");
+		if(Rixor.getRotation() == null)
+			Rixor.getInstance().getLogger().info("Rotation is null... WTF?!");
 		
-		String name = "" + Scrimmage.random(1, 10000);
-		World world = Scrimmage.getInstance().getServer().getWorld(name);
+		String name = "" + Rixor.random(1,10000);
+		World world = Rixor.getInstance().getServer().getWorld(name);
 		
 		if(load) {
 			File src = loader.getFolder();
@@ -243,7 +243,7 @@ public class Map {
 			try {
 				FileUtil.copyFolder(src, dest);
 			} catch (IOException e) {
-				Scrimmage.getInstance().getLogger().severe("ERROR COPYING WORLDS!!!!!!!!!!!!!!!! \n" + e.getMessage());
+				Rixor.getInstance().getLogger().severe("ERROR COPYING WORLDS!!!!!!!!!!!!!!!! \n" + e.getMessage());
 			}
 			folder = dest;
 			WorldCreator wc = new WorldCreator(name);
@@ -257,11 +257,11 @@ public class Map {
 			world = wc.createWorld();
 		}
 		
-		Scrimmage.getInstance().getLogger().info("Loaded the World for '" + this.name + "' taking "
+		Rixor.getInstance().getLogger().info("Loaded the World for '" + this.name + "' taking "
 				+ (System.currentTimeMillis() - start) + "ms!");
 		
 		long step = System.currentTimeMillis();
-		Scrimmage.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
+		Rixor.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
 				+ (System.currentTimeMillis() - start) + "ms!");
 		
 		this.world = world;
@@ -278,7 +278,7 @@ public class Map {
 				String teamColor = element.attributeValue("color");
 				MapTeam team = new MapTeam(this, teamName, teamColor, teamCap);
 				if(team.getColor() == null || team.getColor() == ChatColor.AQUA)
-					Scrimmage.getInstance().getLogger().info("Failed to load team '"
+					Rixor.getInstance().getLogger().info("Failed to load team '"
 							+ teamName + "' due to having an invalid color supplied!");
 				else teams.add(team);
 			}
@@ -287,10 +287,10 @@ public class Map {
 			for(MapTeam team : teams) values.add(team.getName());
 			ServerLog.info("Loaded "+teams.size()+" teams ("+ConversionUtil.commaList(values)+")");
 			
-			Scrimmage.getInstance().getLogger().info("Loaded the Teams for '" + this.name + "' taking "
+			Rixor.getInstance().getLogger().info("Loaded the Teams for '" + this.name + "' taking "
 					+ (System.currentTimeMillis() - step) + "ms!");
 			step = System.currentTimeMillis();
-			Scrimmage.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
+			Rixor.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
 					+ (System.currentTimeMillis() - start) + "ms!");
 			
 			kits = new ArrayList<ItemKit>();
@@ -302,10 +302,10 @@ public class Map {
 					for(Element kitElement : MapLoader.getElements(kitsElement2, "kit"))
 						kits.add(new KitLoader(this, kitElement).load());
 
-			Scrimmage.getInstance().getLogger().info("Loaded the Kits for '" + this.name + "' taking "
+			Rixor.getInstance().getLogger().info("Loaded the Kits for '" + this.name + "' taking "
 					+ (System.currentTimeMillis() - step) + "ms!");
 			step = System.currentTimeMillis();
-			Scrimmage.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
+			Rixor.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
 					+ (System.currentTimeMillis() - start) + "ms!");
 
 
@@ -313,7 +313,7 @@ public class Map {
 				for (Element item : MapLoader.getElements(e, "item")) {
 					ItemStack itemstack = new ItemStack(ConversionUtil.convertStringToMaterial(item.getText()));
 					itemRemove.add(itemstack);
-					Scrimmage.getInstance().getLogger().info("Loaded ItemRemove - " + item.getText());
+					Rixor.getInstance().getLogger().info("Loaded ItemRemove - " + item.getText());
 				}
 			}
 
@@ -321,7 +321,7 @@ public class Map {
 				for (Element i : MapLoader.getElements(e, "instantignite")) {
 					if (i.getText().equalsIgnoreCase("on")){
 						tntsettings.setInstantIgnite(true);
-						Scrimmage.getInstance().getLogger().info("Instant Ignite is ON");
+						Rixor.getInstance().getLogger().info("Instant Ignite is ON");
 					}
 					else {
 						tntsettings.setInstantIgnite(false);
@@ -330,7 +330,7 @@ public class Map {
 				for (Element i : MapLoader.getElements(e, "blockdamage")){
 					if (i.getText().equalsIgnoreCase("off")){
 						tntsettings.setBlockDamage(false);
-						Scrimmage.getInstance().getLogger().info("Block Damage is OFF");
+						Rixor.getInstance().getLogger().info("Block Damage is OFF");
 					}
 					else {
 						tntsettings.setBlockDamage(true);
@@ -345,7 +345,7 @@ public class Map {
 					ItemStack itemStack = new ItemStack(ConversionUtil.convertStringToMaterial(itemstackS));
 					itemStack.setAmount(Integer.parseInt(amount.getText()));
 					killReward = itemStack;
-					Scrimmage.getInstance().getLogger().info("KillReward is - " + itemStack.getType().toString());
+					Rixor.getInstance().getLogger().info("KillReward is - " + itemStack.getType().toString());
 				}
 			}
 			for(MapTeam team : teams)
@@ -354,10 +354,10 @@ public class Map {
 			observers = new MapTeam(this, "Observers", ChatColor.AQUA, -1);
 			observers.load(root.element("spawns"));
 
-			Scrimmage.getInstance().getLogger().info("Loaded the Spawns for '" + this.name + "' taking "
+			Rixor.getInstance().getLogger().info("Loaded the Spawns for '" + this.name + "' taking "
 					+ (System.currentTimeMillis() - step) + "ms!");
 			step = System.currentTimeMillis();
-			Scrimmage.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
+			Rixor.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
 					+ (System.currentTimeMillis() - start) + "ms!");
 			
 			for(MapTeam team : teams)
@@ -365,18 +365,18 @@ public class Map {
 			
 			observers.loadTeam();
 
-			Scrimmage.getInstance().getLogger().info("Loaded the Scoreboard Teams for '" + this.name + "' taking "
+			Rixor.getInstance().getLogger().info("Loaded the Scoreboard Teams for '" + this.name + "' taking "
 					+ (System.currentTimeMillis() - step) + "ms!");
 			step = System.currentTimeMillis();
-			Scrimmage.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
+			Rixor.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
 					+ (System.currentTimeMillis() - start) + "ms!");
 			
 			reloadSidebar(true, null);
 
-			Scrimmage.getInstance().getLogger().info("Loaded the Objectives for '" + this.name + "' taking "
+			Rixor.getInstance().getLogger().info("Loaded the Objectives for '" + this.name + "' taking "
 					+ (System.currentTimeMillis() - step) + "ms!");
 			step = System.currentTimeMillis();
-			Scrimmage.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
+			Rixor.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
 					+ (System.currentTimeMillis() - start) + "ms!");
 
 			regions = new ArrayList<RegionGroup>();
@@ -399,10 +399,10 @@ public class Map {
 					this.regions.add(new RegionGroup(element, this));
 			}
 
-			Scrimmage.getInstance().getLogger().info("Loaded the Regions for '" + this.name + "' taking "
+			Rixor.getInstance().getLogger().info("Loaded the Regions for '" + this.name + "' taking "
 					+ (System.currentTimeMillis() - step) + "ms!");
 			step = System.currentTimeMillis();
-			Scrimmage.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
+			Rixor.getInstance().getLogger().info("Total load time for '" + this.name + "' is currently "
 					+ (System.currentTimeMillis() - start) + "ms!");
 			
 			/*
@@ -423,7 +423,7 @@ public class Map {
 			 */
 		}
 		long finish = System.currentTimeMillis();
-		Scrimmage.getInstance().getLogger().info("Loaded '" + this.name + "' taking " + (finish - start) + "ms!");
+		Rixor.getInstance().getLogger().info("Loaded '" + this.name + "' taking " + (finish - start) + "ms!");
 		mapcommand.add(this.name);
 		ConversionUtil.commaList(mapcommand);
 	}
@@ -472,7 +472,7 @@ public class Map {
 	public CoreObjective getCoreLeak(Location location) {
 		for(MapTeam team : getTeams())
 			if(team.getCoreLeak(location) != null) {
-				//Scrimmage.debug(team.getCoreLeak(location).getName(), "d");
+				//Rixor.debug(team.getCoreLeak(location).getName(), "d");
 				return team.getCoreLeak(location);
 			}
 

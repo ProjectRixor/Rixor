@@ -3,7 +3,7 @@ package com.projectrixor.rixor.scrimmage.rotation;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +19,7 @@ public class Rotation {
 		List<MapLoader> maps = new ArrayList<MapLoader>();
 		List<RotationSlot> slots = new ArrayList<RotationSlot>();
 
-		List<String> rotation = Scrimmage.getInstance().getConfig().getStringList("rotation");
+		List<String> rotation = Rixor.getInstance().getConfig().getStringList("rotation");
 		if(rotation == null)
 			maps.addAll(loaded);
 		else {
@@ -32,9 +32,9 @@ public class Rotation {
 		
 		this.rotation = slots;
 		
-		Scrimmage.getInstance().getLogger().info("Rotation: " + getRotationString());
-		//Scrimmage.getInstance().getConfig().set("rotation", getRotationString());
-		//Scrimmage.getInstance().saveConfig();
+		Rixor.getInstance().getLogger().info("Rotation: " + getRotationString());
+		//Rixor.getInstance().getConfig().set("rotation", getRotationString());
+		//Rixor.getInstance().saveConfig();
 	}
 	
 	public void start() {
@@ -43,7 +43,7 @@ public class Rotation {
 		
 		slot.load();
 		
-		Scrimmage.setOpen(true);
+		Rixor.setOpen(true);
 	}
 	
 	public String getRotationString() {
@@ -59,7 +59,7 @@ public class Rotation {
 	public void setNext(RotationSlot slot) {
 		int current = getLocation(slot);
 		
-		List<RotationSlot> pre = rotation.subList(0, current);
+		List<RotationSlot> pre = rotation.subList(0, current - 1);
 		List<RotationSlot> aft = new ArrayList<RotationSlot>();
 		try {
 			aft = rotation.subList(current + 1, rotation.size() - 1);

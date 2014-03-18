@@ -2,8 +2,8 @@ package com.projectrixor.rixor.scrimmage.map.objective;
 
 import java.util.List;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.filter.events.BlockChangeEvent;
@@ -41,7 +41,7 @@ public class ObjectiveEvents implements Listener {
 		else {
 			killer.getTeam().addScore(1);
 			if(event.getMap().getSidebar() == SidebarType.SCORE && killer.getTeam().getScore() >= event.getMap().getScoreLimit() && event.getMap().getScoreLimit() > 0)
-				Scrimmage.getRotation().getSlot().getMatch().end(killer.getTeam());
+				Rixor.getRotation().getSlot().getMatch().end(killer.getTeam());
 		}
 		
 		event.getMap().reloadSidebar(false, SidebarType.SCORE);
@@ -50,7 +50,7 @@ public class ObjectiveEvents implements Listener {
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onCoreBlockChange(BlockChangeEvent event) {
 
-		//Scrimmage.debug("First message  " + event.getCause().getEventName(), "core");
+		//Rixor.debug("First message  " + event.getCause().getEventName(), "core");
 		if(event.getNewState().getWorld() != event.getMap().getWorld())
 			return;
 
@@ -68,7 +68,7 @@ public class ObjectiveEvents implements Listener {
 			if(event.getCause() instanceof BlockBreakEvent) {
 
 
-				//Scrimmage.debug(event.getNewState().getLocation().toString(), "core");
+				//Rixor.debug(event.getNewState().getLocation().toString(), "core");
 				for(CoreObjective core : cores)
 					if(core.isLocation(event.getNewState().getLocation()) && core.getTeam() == client.getTeam()) {
 
@@ -86,22 +86,22 @@ public class ObjectiveEvents implements Listener {
 						}
 						team = client.getTeam();
 						team1 = team;
-						MapTeam obs = Scrimmage.getRotation().getSlot().getMap().getObservers();
+						MapTeam obs = Rixor.getRotation().getSlot().getMap().getObservers();
 						String format = team.getColor() + "[Team] " + client.getStars() + team.getColor() + client.getPlayer().getName() + ChatColor.GRAY + " broke a piece of " + core.getName();
-						Scrimmage.broadcast(format, team);
-						Scrimmage.broadcast(format, obs);
+						Rixor.broadcast(format,team);
+						Rixor.broadcast(format,obs);
 			}
 			
 			if(event.getNewState().getType() == Material.LAVA) {
-				//Scrimmage.debug("First message3", "core");
+				//Rixor.debug("First message3", "core");
 				event.setCancelled(true);
 			}
 		} if (event.getCause() instanceof BlockFromToEvent ) {
-			//	Scrimmage.debug("NOT BLOCK", "core");
+			//	Rixor.debug("NOT BLOCK", "core");
 			if(event.getNewState().getType() == Material.LAVA && event.getMap().getCoreLeak(event.getNewState().getLocation()) != null) {
 
 				CoreObjective core = event.getMap().getCoreLeak(event.getNewState().getLocation());
-				//Scrimmage.debug(team1.getName(), "d");
+				//Rixor.debug(team1.getName(), "d");
 				if (!core.isDestroyed()){
 					core.setComplete(true, team1);
 
@@ -111,7 +111,7 @@ public class ObjectiveEvents implements Listener {
 					String leaked = ChatColor.DARK_AQUA + " " + core.getName();
 					String has = ChatColor.RED + " has leaked!";
 					String message = who + leaked + has;
-					Scrimmage.broadcast(message);
+					Rixor.broadcast(message);
 				}
 
 				}
@@ -131,7 +131,7 @@ public class ObjectiveEvents implements Listener {
 			}
 		
 		if(event.getBlockPlaced().getType() != Material.WOOL) {
-			if(Scrimmage.getMap().getWool(event.getBlock().getLocation()) != null) {
+			if(Rixor.getMap().getWool(event.getBlock().getLocation()) != null) {
 				event.setCancelled(true);
 				return;
 			}
@@ -167,14 +167,14 @@ public class ObjectiveEvents implements Listener {
 		String placed = ChatColor.GRAY + " placed the " + wool.getName().toUpperCase();
 		String team = ChatColor.GRAY + " WOOL for " + client.getTeam().getColor() + client.getTeam().getDisplayName();
 		String message = who + placed + team;
-		Scrimmage.broadcast(message);
+		Rixor.broadcast(message);
 		wool.setComplete(true, client.getTeam());
 		client.getTeam().getMap().reloadSidebar(true, SidebarType.OBJECTIVES);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBlockBreakForWool(BlockBreakEvent event) {
-		if(Scrimmage.getMap().getWool(event.getBlock().getLocation()) != null) {
+		if(Rixor.getMap().getWool(event.getBlock().getLocation()) != null) {
 			event.setCancelled(true);
 			return;
 		}
@@ -183,7 +183,7 @@ public class ObjectiveEvents implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onBlockPlaceForMonument(BlockChangeEvent event) {
-		//Scrimmage.debug("monu1", "monu");
+		//Rixor.debug("monu1", "monu");
 		Client client = event.getClient();
 		if(event.getCause() instanceof BlockPlaceEvent) {
 			List<MonumentObjective> monuments = event.getMap().getMonuments();
@@ -219,7 +219,7 @@ public class ObjectiveEvents implements Listener {
 			event.setCancelled(true);
 			return;
 		}
-		//Scrimmage.debug("monu2", "monu");
+		//Rixor.debug("monu2", "monu");
 		Map map = event.getMap();
 		
 

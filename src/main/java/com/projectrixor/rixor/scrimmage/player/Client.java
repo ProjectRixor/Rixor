@@ -3,9 +3,8 @@ package com.projectrixor.rixor.scrimmage.player;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.ServerLog;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import lombok.Getter;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
 // import ServerLog;
@@ -37,7 +36,7 @@ public class Client {
 	
 	public Client(Player player) {
 		this.player = player;
-		this.perms = player.addAttachment(Scrimmage.getInstance());
+		this.perms = player.addAttachment(Rixor.getInstance());
 	}
 	
 	public boolean hasTouched() {
@@ -52,7 +51,7 @@ public class Client {
 	
 		//String[] devs = new String[]{"ParaPenguin", "Haribo98", "MasterEjzz", "ShinyDialga45"};
 		List<String> authors = new ArrayList<String>();
-		for(Contributor author : Scrimmage.getMap().getAuthors()) {
+		for(Contributor author : Rixor.getMap().getAuthors()) {
 			authors.add(author.getName());
 		}
 		
@@ -80,12 +79,12 @@ public class Client {
 	
 	public void setTeam(MapTeam team) {
 		/*
-		ServerLog.info("Starting: " + Scrimmage.getRotation().getSlot().getMatch().isCurrentlyStarting());
-		ServerLog.info("Running: " + Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning());
-		ServerLog.info("Cycling: " + Scrimmage.getRotation().getSlot().getMatch().isCurrentlyCycling());
+		ServerLog.info("Starting: " + Rixor.getRotation().getSlot().getMatch().isCurrentlyStarting());
+		ServerLog.info("Running: " + Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning());
+		ServerLog.info("Cycling: " + Rixor.getRotation().getSlot().getMatch().isCurrentlyCycling());
 		*/
 		
-		if(Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+		if(Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
 			setTeam(team, true, true, true);
 			return;
 		}
@@ -107,7 +106,7 @@ public class Client {
 				}
 			}
 			
-		}.runTaskLaterAsynchronously(Scrimmage.getInstance(), 1);
+		}.runTaskLaterAsynchronously(Rixor.getInstance(), 1);
 		
 		for(PotionEffect effect : player.getActivePotionEffects())
 			player.removePotionEffect(effect.getType());
@@ -132,7 +131,7 @@ public class Client {
 			for(MapTeam team : map.getTeams())
 				players.addAll(team.getPlayers());
 			
-			if(Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+			if(Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
 				for(Client observer : observers)
 					for(Client update : Client.getClients())
 						observer.getPlayer().showPlayer(update.getPlayer());

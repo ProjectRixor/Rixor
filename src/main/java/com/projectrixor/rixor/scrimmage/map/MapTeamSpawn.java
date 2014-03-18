@@ -3,7 +3,7 @@ package com.projectrixor.rixor.scrimmage.map;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.region.ConfiguredRegion;
 import lombok.Getter;
 import com.projectrixor.rixor.scrimmage.map.kit.ItemKit;
@@ -32,7 +32,7 @@ public class MapTeamSpawn {
 	
 	public Location getSpawn() {
 		try {
-			return possibles.get(Scrimmage.random(0,possibles.size()-1));
+			return possibles.get(Rixor.random(0,possibles.size()-1));
 		} catch(IndexOutOfBoundsException ioobe) {
 			// What a lovely Exception label... hahah
 			ioobe.printStackTrace();

@@ -46,9 +46,10 @@ import com.projectrixor.rixor.scrimmage.utils.JarUtils;
 import com.projectrixor.rixor.scrimmage.utils.ZipUtil;
 
 
-public class Scrimmage extends JavaPlugin {
+public class Rixor extends JavaPlugin {
 	
-	static @Getter Scrimmage instance;
+	static @Getter
+	Rixor instance;
 	static @Getter @Setter Rotation rotation;
 	static @Getter List<Map> mapsPlayed = new ArrayList<Map>();
 	@Getter List<File> libs = new ArrayList<File>();
@@ -176,8 +177,8 @@ public class Scrimmage extends JavaPlugin {
 		team = getConfig().getString("team");
 		if(team == null)
 			team = "public";
-		Scrimmage.getInstance().getConfig().set("team", team);
-		Scrimmage.getInstance().saveConfig();
+		Rixor.getInstance().getConfig().set("team", team);
+		Rixor.getInstance().saveConfig();
 		
 		// Load the maps from the local map repository (no github/download connections this time Harry...)
 		File[] files = getMapRoot().listFiles();
@@ -312,6 +313,6 @@ public class Scrimmage extends JavaPlugin {
 	}
 	
 	public static Map getMap() {
-		return Scrimmage.getRotation().getSlot().getMap();
+		return Rixor.getRotation().getSlot().getMap();
 	}	
 }

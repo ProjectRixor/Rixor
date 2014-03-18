@@ -1,6 +1,6 @@
 package com.projectrixor.rixor.scrimmage.utils;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import org.bukkit.scheduler.BukkitTask;
 
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class SchedulerUtil {
 		if(this.task != null)
 			this.task.cancel();
 		
-		this.task = Scrimmage.getInstance().getServer().getScheduler().runTaskTimerAsynchronously(Scrimmage.getInstance(), new Runnable() {
+		this.task = Rixor.getInstance().getServer().getScheduler().runTaskTimerAsynchronously(Rixor.getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -33,7 +33,7 @@ public class SchedulerUtil {
 		if(this.task != null)
 			this.task.cancel();
 		
-		this.task = Scrimmage.getInstance().getServer().getScheduler().runTaskTimer(Scrimmage.getInstance(), new Runnable() {
+		this.task = Rixor.getInstance().getServer().getScheduler().runTaskTimer(Rixor.getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -47,7 +47,7 @@ public class SchedulerUtil {
 		if(this.task != null)
 			this.task.cancel();
 		
-		this.task = Scrimmage.getInstance().getServer().getScheduler().runTaskLaterAsynchronously(Scrimmage.getInstance(), new Runnable() {
+		this.task = Rixor.getInstance().getServer().getScheduler().runTaskLaterAsynchronously(Rixor.getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -61,7 +61,7 @@ public class SchedulerUtil {
 		if(this.task != null)
 			this.task.cancel();
 		
-		this.task = Scrimmage.getInstance().getServer().getScheduler().runTaskLater(Scrimmage.getInstance(), new Runnable() {
+		this.task = Rixor.getInstance().getServer().getScheduler().runTaskLater(Rixor.getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -75,7 +75,7 @@ public class SchedulerUtil {
 		if(this.task != null)
 			this.task.cancel();
 		
-		this.task = Scrimmage.getInstance().getServer().getScheduler().runTaskAsynchronously(Scrimmage.getInstance(), new Runnable() {
+		this.task = Rixor.getInstance().getServer().getScheduler().runTaskAsynchronously(Rixor.getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {
@@ -89,7 +89,7 @@ public class SchedulerUtil {
 		if(this.task != null)
 			this.task.cancel();
 		
-		this.task = Scrimmage.getInstance().getServer().getScheduler().runTask(Scrimmage.getInstance(), new Runnable() {
+		this.task = Rixor.getInstance().getServer().getScheduler().runTask(Rixor.getInstance(), new Runnable() {
 			
 			@Override
 			public void run() {

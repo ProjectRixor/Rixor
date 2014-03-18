@@ -3,7 +3,7 @@ package com.projectrixor.rixor.scrimmage.map;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.ServerLog;
 import com.projectrixor.rixor.scrimmage.map.objective.CoreObjective;
 import com.projectrixor.rixor.scrimmage.map.objective.CoreStage;
@@ -286,7 +286,7 @@ public class MapTeam {
 		List<String> names = new ArrayList<String>();
 		for(TeamObjective objective : this.objectives) {
 			String name = " " + objective.getColor() + objective.getName() + objective.getSpaces();
-			//Scrimmage.getInstance().getLogger().severe(name.length() + " Thats's " + name + "(" + objective.getName() + " AND " + objective.getSpaces() + ")");
+			//Rixor.getInstance().getLogger().severe(name.length() + " Thats's " + name + "(" + objective.getName() + " AND " + objective.getSpaces() + ")");
 			if(name.length() > 16) {
 				int extra = name.length() - 16;
 				String trimmed = objective.getName().substring(0, objective.getName().length() - 1 - extra);
@@ -306,9 +306,9 @@ public class MapTeam {
 		
 		int score = start;
 		for(String offlineName : names) {
-			Scrimmage.getInstance().getServer().getScoreboardManager().getNewScoreboard().registerNewTeam("" + score);
-			OfflinePlayer player = Scrimmage.getInstance().getServer().getOfflinePlayer(offlineName);
-			//Scrimmage.getInstance().getServer().getScoreboardManager().getMainScoreboard().getTeam(offlineName + score).addPlayer(player);
+			Rixor.getInstance().getServer().getScoreboardManager().getNewScoreboard().registerNewTeam("" + score);
+			OfflinePlayer player = Rixor.getInstance().getServer().getOfflinePlayer(offlineName);
+			//Rixor.getInstance().getServer().getScoreboardManager().getMainScoreboard().getTeam(offlineName + score).addPlayer(player);
 			getMap().getBoardObjective().getScore(player).setScore(score);
 			score++;
 		}
@@ -389,7 +389,7 @@ public class MapTeam {
 	
 	public MapTeamSpawn getSpawn() {
 		try {
-			return spawns.get(Scrimmage.random(0, spawns.size() - 1));
+			return spawns.get(Rixor.random(0,spawns.size()-1));
 		} catch(IndexOutOfBoundsException ioobe) {
 			// What a lovely Exception label... hahah
 			ioobe.printStackTrace();

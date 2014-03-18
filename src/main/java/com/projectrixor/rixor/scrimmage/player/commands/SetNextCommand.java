@@ -1,6 +1,6 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.Var;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
 import com.projectrixor.rixor.scrimmage.player.Client;
@@ -44,7 +44,7 @@ public class SetNextCommand implements CommandExecutor {
 			return false;
 		}
 	
-		Rotation rot = Scrimmage.getRotation();
+		Rotation rot = Rixor.getRotation();
 		RotationSlot after = rot.getNext();
 		
 		rot.setNext(new RotationSlot(found));
@@ -61,7 +61,7 @@ public class SetNextCommand implements CommandExecutor {
 		}
 		
 		for (Player Online : Bukkit.getOnlinePlayers()) {
-			if (Client.getClient((Player) Online).isRanked()) {
+			if (Client.getClient(Online).isRanked()) {
 				Online.sendMessage(ChatColor.WHITE + "[" + ChatColor.GOLD + "A" + ChatColor.WHITE + "] " + (Client.getClient((Player) sender).getStars()) + (Client.getClient((Player) sender).getTeam().getColor()) + sender.getName() + ChatColor.WHITE + " has set the next map to " + ChatColor.GOLD + found.getName() + ChatColor.WHITE + ".");
 			}
 		}

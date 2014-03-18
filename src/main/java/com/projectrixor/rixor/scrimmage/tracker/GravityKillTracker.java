@@ -1,7 +1,7 @@
 package com.projectrixor.rixor.scrimmage.tracker;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.match.events.PlayerDiedEvent;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.utils.SchedulerUtil;
@@ -622,9 +622,9 @@ public class GravityKillTracker implements Listener {
 		double xmove = event.getFrom().getX() - event.getTo().getX();
 		double ymove = event.getFrom().getY() - event.getTo().getY();
 		double zmove = event.getFrom().getZ() - event.getTo().getZ();
-		if (xmove >= Scrimmage.MINIMUM_MOVEMENT && xmove <= -Scrimmage.MINIMUM_MOVEMENT
-				&& ymove >= Scrimmage.MINIMUM_MOVEMENT && ymove <= -Scrimmage.MINIMUM_MOVEMENT
-				&& zmove >= Scrimmage.MINIMUM_MOVEMENT && zmove <= -Scrimmage.MINIMUM_MOVEMENT) return;
+		if (xmove >= Rixor.MINIMUM_MOVEMENT && xmove <= -Rixor.MINIMUM_MOVEMENT
+				&& ymove >= Rixor.MINIMUM_MOVEMENT && ymove <= -Rixor.MINIMUM_MOVEMENT
+				&& zmove >= Rixor.MINIMUM_MOVEMENT && zmove <= -Rixor.MINIMUM_MOVEMENT) return;
 		Player player = event.getPlayer();
 
 		if (attacks.containsKey(player)) {
@@ -687,8 +687,8 @@ public class GravityKillTracker implements Listener {
 				String deathMessage = makeDeathMessage(attack, damageCause);
 				event.setDeathMessage(deathMessage);
 				if (!wasTeamSpleef(attack, damageCause)) {
-					Scrimmage.getInstance();
-					Scrimmage.callEvent(new PlayerDiedEvent(Scrimmage.getMap(), player, attacker));
+					Rixor.getInstance();
+					Rixor.callEvent(new PlayerDiedEvent(Rixor.getMap(),player,attacker));
 				}
 				return;
 			}
@@ -696,27 +696,27 @@ public class GravityKillTracker implements Listener {
 
 		if (damageCause.equals(DamageCause.DROWNING)) {
 			event.setDeathMessage(client.getTeam().getColor() + player.getName() + ChatColor.GRAY + " drowned");
-			Scrimmage.getInstance();
-			Scrimmage.callEvent(new PlayerDiedEvent(Scrimmage.getMap(), player, null));
+			Rixor.getInstance();
+			Rixor.callEvent(new PlayerDiedEvent(Rixor.getMap(),player,null));
 			return;
 		} else if (damageCause.equals(DamageCause.VOID)) {
 			event.setDeathMessage(client.getTeam().getColor() + player.getName() + ChatColor.GRAY + " fell into the void");
-			Scrimmage.getInstance();
-			Scrimmage.callEvent(new PlayerDiedEvent(Scrimmage.getMap(), player, null));
+			Rixor.getInstance();
+			Rixor.callEvent(new PlayerDiedEvent(Rixor.getMap(),player,null));
 			return;
 		} else if (damageCause.equals(DamageCause.STARVATION)) {
 			event.setDeathMessage(client.getTeam().getColor() + player.getName() + ChatColor.GRAY + " starved to death");
-			Scrimmage.getInstance();
-			Scrimmage.callEvent(new PlayerDiedEvent(Scrimmage.getMap(), player, null));
+			Rixor.getInstance();
+			Rixor.callEvent(new PlayerDiedEvent(Rixor.getMap(),player,null));
 			return;
 		} else if (damageCause.equals(DamageCause.FALLING_BLOCK)) {
 			event.setDeathMessage(client.getTeam().getColor() + player.getName() + ChatColor.GRAY + " was squished by a block");
-			Scrimmage.getInstance();
-			Scrimmage.callEvent(new PlayerDiedEvent(Scrimmage.getMap(), player, null));
+			Rixor.getInstance();
+			Rixor.callEvent(new PlayerDiedEvent(Rixor.getMap(),player,null));
 			return;
 		} else if (damageCause.equals(DamageCause.FALL)) {
 			event.setDeathMessage(client.getTeam().getColor() + player.getName() + ChatColor.GRAY + " fell to their death");
-			Scrimmage.callEvent(new PlayerDiedEvent(Scrimmage.getMap(), player, null));
+			Rixor.callEvent(new PlayerDiedEvent(Rixor.getMap(),player,null));
 			return;
 		}
 
@@ -765,14 +765,14 @@ public class GravityKillTracker implements Listener {
 				event.setDeathMessage(tName + c + how + dName + c + "'s " + itemstring);	
 			}
 			event.setDroppedExp(0);
-			Scrimmage.getInstance();
-			Scrimmage.callEvent(new PlayerDiedEvent(Scrimmage.getMap(), player, p));
+			Rixor.getInstance();
+			Rixor.callEvent(new PlayerDiedEvent(Rixor.getMap(),player,p));
 			return;
 		}
 		
 		event.setDeathMessage(null);
-		Scrimmage.getInstance();
-		Scrimmage.callEvent(new PlayerDiedEvent(Scrimmage.getMap(), player, null));
+		Rixor.getInstance();
+		Rixor.callEvent(new PlayerDiedEvent(Rixor.getMap(),player,null));
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -791,7 +791,7 @@ public class GravityKillTracker implements Listener {
 				Collections.addAll(inventory, player.getInventory().getContents());
 
 				PlayerDeathEvent deathEvent = new PlayerDeathEvent(player, inventory, 0, makeDeathMessage(attack, damageCause));
-				Scrimmage.callEvent(deathEvent);
+				Rixor.callEvent(deathEvent);
 			}
 		}
 	}

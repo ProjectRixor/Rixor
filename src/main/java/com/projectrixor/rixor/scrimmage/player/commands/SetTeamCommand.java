@@ -1,6 +1,6 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 
@@ -23,7 +23,7 @@ public class SetTeamCommand implements CommandExecutor {
 			}
 		}
 		
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		
 		if(args.length < 2) {
 			sender.sendMessage(ChatColor.RED + "/setteam <team> <new name>");

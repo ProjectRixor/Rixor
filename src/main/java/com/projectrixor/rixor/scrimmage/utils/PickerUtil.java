@@ -8,18 +8,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.Map;
-import com.projectrixor.rixor.scrimmage.match.Match;
 
 public class PickerUtil {
 	@Getter Map map;
@@ -49,7 +45,7 @@ public class PickerUtil {
     	
     	//Setup Observers Wool
     	Wool obs = new Wool(DyeColor.LIGHT_BLUE);
-    	ItemStack obsItem = obs.toItemStack(Scrimmage.getMap().getObservers().getTeam().getPlayers().size());
+    	ItemStack obsItem = obs.toItemStack(Rixor.getMap().getObservers().getTeam().getPlayers().size());
     	ItemMeta obsItemMeta = obsItem.getItemMeta();
     	obsItemMeta.setDisplayName(ChatColor.AQUA + "Observers");
     	obsItemMeta.setLore(Arrays.asList(ChatColor.BLUE + "Join the" + ChatColor.AQUA + " Observers" + ChatColor.BLUE + "!"));
@@ -66,7 +62,7 @@ public class PickerUtil {
     	
     	preview.setItem(18, closer);
     	
-    	for (MapTeam teams : Scrimmage.getMap().getTeams()) {
+    	for (MapTeam teams : Rixor.getMap().getTeams()) {
     		int i = 10;
     		if (i >= 7) {
     		DyeColor dye = DyeColor.WHITE;

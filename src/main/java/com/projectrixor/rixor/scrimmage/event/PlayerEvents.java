@@ -1,9 +1,9 @@
 package com.projectrixor.rixor.scrimmage.event;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.ServerLog;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.player.StatTracker;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.MapTeamSpawn;
@@ -63,13 +63,13 @@ public class PlayerEvents implements Listener {
 		Client client = new Client(player);
 		
 		Client.getClients().add(client);
-		client.setTeam(Scrimmage.getRotation().getSlot().getMap().getObservers(), true, true, true);
+		client.setTeam(Rixor.getRotation().getSlot().getMap().getObservers(), true, true, true);
 		
 		event.setJoinMessage(client.getStars() + client.getTeam().getColor() + event.getPlayer().getName() + ChatColor.YELLOW + " joined the game");
 		Client clients = Client.getClient(event.getPlayer());
 		if (event.getPlayer().isOp()){
 			boolean isUpdateAvail = UpdateUtil.isUpdateAvailable("http://update.masterejay.us/Version.txt","http://update.masterejay.us/Rixor.jar",
-					Scrimmage.getInstance().getDescription(),  event.getPlayer());
+					Rixor.getInstance().getDescription(),  event.getPlayer());
 			if (isUpdateAvail){
 				event.getPlayer().sendMessage(ChatColor.BOLD + "" + ChatColor.GREEN + "A new update of Rixor is available! Use /update to update your version! ");
 				event.getPlayer().sendMessage(ChatColor.GREEN + "To see the changelog, click this link - " + ChatColor.GOLD + "http://bit.ly/1cndJKo");
@@ -102,9 +102,9 @@ public class PlayerEvents implements Listener {
 	@EventHandler
 	public void onPlayerDeath(EntityDeathEvent event) {
 		if (event instanceof PlayerDeathEvent){
-			if (Scrimmage.getRotation().getSlot().getMap().getKillReward() != null && event.getEntity().getKiller() != null){
+			if (Rixor.getRotation().getSlot().getMap().getKillReward() != null && event.getEntity().getKiller() != null){
 				Player killer = event.getEntity().getKiller();
-				killer.getInventory().addItem(Scrimmage.getRotation().getSlot().getMap().getKillReward());
+				killer.getInventory().addItem(Rixor.getRotation().getSlot().getMap().getKillReward());
 				killer.playSound(killer.getLocation(), Sound.ORB_PICKUP, 10, 1);
 				killer.sendMessage(ChatColor.YELLOW + "" + ChatColor.ITALIC + "+1" + ChatColor.RESET + ChatColor.RED + " | " + ChatColor.GOLD + "Kill");
 				StatTracker.gainKill(killer.getDisplayName());
@@ -118,7 +118,7 @@ public class PlayerEvents implements Listener {
 			List<ItemStack> itemsToDelete = new ArrayList<>();
 			for (ItemStack i : itemStackL){
 				if (i != null){
-					for (ItemStack i2 : Scrimmage.getRotation().getSlot().getMap().getItemRemove()){
+					for (ItemStack i2 : Rixor.getRotation().getSlot().getMap().getItemRemove()){
 						if (i2 != null){
 							if (i.getType().toString().equals(i2.getType().toString())){
 								itemsToDelete.add(i);
@@ -138,11 +138,11 @@ public class PlayerEvents implements Listener {
 	@EventHandler
 	public void onTNTExpload(ExplosionPrimeEvent event){
 		org.bukkit.entity.Entity entity = event.getEntity();
-		if (entity instanceof TNTPrimed && !Scrimmage.getRotation().getSlot().getMap().getTntsettings().isBlockDamage()) {
+		if (entity instanceof TNTPrimed && !Rixor.getRotation().getSlot().getMap().getTntsettings().isBlockDamage()) {
 			event.setCancelled(true);
 			Location explosion = event.getEntity().getLocation();
-			Scrimmage.getMap().getWorld().createExplosion(explosion.getX(), explosion.getY(), explosion.getZ(), 2F, false, false);
-			Scrimmage.getMap().getWorld().playSound(event.getEntity().getLocation(),Sound.EXPLODE,-4,12);
+			Rixor.getMap().getWorld().createExplosion(explosion.getX(), explosion.getY(), explosion.getZ(), 2F, false, false);
+			Rixor.getMap().getWorld().playSound(event.getEntity().getLocation(),Sound.EXPLODE,-4,12);
 		}
 	}
 	@EventHandler
@@ -167,10 +167,10 @@ public class PlayerEvents implements Listener {
 
 		Player player = (Player) event.getWhoClicked();
 		Client client = Client.getClient(player);
-			if ((client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) && (event.getInventory().getName().contains("Picker"))) {
+			if ((client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) && (event.getInventory().getName().contains("Picker"))) {
 				if (!(event.getRawSlot() > event.getInventory().getSize() - 1)) {
 					if (event.getCurrentItem().getType().equals(Material.WOOL)) {
-						Map map = Scrimmage.getRotation().getSlot().getMap();
+						Map map = Rixor.getRotation().getSlot().getMap();
 						
 						event.setCancelled(true);
 						String name = event.getCurrentItem().getItemMeta().getDisplayName() + "";
@@ -181,7 +181,7 @@ public class PlayerEvents implements Listener {
 							player.sendMessage(ChatColor.RED + "You are already on that team!");
 						} else {
 							client.setTeam(team);
-							Scrimmage.broadcast(team.getColor() + player.getName() + ChatColor.GRAY + " has joined the " + team.getColor() + team.getDisplayName() + ChatColor.GRAY + ".");
+							Rixor.broadcast(team.getColor()+player.getName()+ChatColor.GRAY+" has joined the "+team.getColor()+team.getDisplayName()+ChatColor.GRAY+".");
 						}
 						player.closeInventory();
 					} else if (event.getCurrentItem().getType().equals(Material.EYE_OF_ENDER)) {
@@ -199,7 +199,7 @@ public class PlayerEvents implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
 		Client client = Client.getClient(event.getPlayer());
 		if ((event.getAction() == Action.RIGHT_CLICK_BLOCK) || (event.getAction() == Action.RIGHT_CLICK_AIR)) {
-			if ((client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning())) { 
+			if ((client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning())) {
 				if(event.getPlayer().getItemInHand().getType().equals(Material.ENCHANTED_BOOK)) {
 					if (!(event.getPlayer().getItemInHand().getItemMeta().getDisplayName().contains(ChatColor.RED + "" + ChatColor.BOLD + "Team Picker"))) {
 					} else {
@@ -212,13 +212,13 @@ public class PlayerEvents implements Listener {
 	
 	@EventHandler
 	public void onServerListPing(ServerListPingEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 
 		ChatColor color = ChatColor.GRAY;
 		
 		String team = "";
-		if(!Scrimmage.isPublic())
-			team = ChatColor.GRAY + "Server Owner: (" + ChatColor.GOLD + Scrimmage.getTeam() + ChatColor.GRAY + ")";
+		if(!Rixor.isPublic())
+			team = ChatColor.GRAY + "Server Owner: (" + ChatColor.GOLD + Rixor.getTeam() + ChatColor.GRAY + ")";
 		
 		event.setMotd(color + " " + Characters.raquo + " " + ChatColor.AQUA + map.getName() + color + " " + Characters.laquo + " " + "\n" + team);
 	}
@@ -229,7 +229,7 @@ public class PlayerEvents implements Listener {
 		event.setCancelled(true);
 		
 		PlayerChatEvent chat = new PlayerChatEvent(client, event.getMessage(), true);
-		Scrimmage.callEvent(chat);
+		Rixor.callEvent(chat);
 	}
 	
 	@EventHandler
@@ -240,7 +240,7 @@ public class PlayerEvents implements Listener {
 		Player clicker = event.getPlayer();
 		Player clicked = (Player) event.getRightClicked();
 		Client client = Client.getClient(clicker);
-		if ((client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning())) {
+		if ((client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning())) {
 		Inventory clickedinv = InvUtil.obsInvPreview(clicked, clicked.getInventory());
 		clicker.openInventory(clickedinv);
 		}
@@ -251,10 +251,10 @@ public class PlayerEvents implements Listener {
 		Player player = event.getPlayer();
 		Location Loc = player.getLocation();
 		Loc.setY(Loc.getY() + .5);
-		Match match = Scrimmage.getRotation().getSlot().getMatch();
+		Match match = Rixor.getRotation().getSlot().getMatch();
 		Client client = Client.getClient(event.getPlayer());
 		if ((Loc.getY() < -30 && client.isObserver()) || (!match.isCurrentlyRunning() && Loc.getY() < -30)) {
-			event.getPlayer().teleport(Scrimmage.getMap().getObservers().getSpawn().getSpawn());
+			event.getPlayer().teleport(Rixor.getMap().getObservers().getSpawn().getSpawn());
 		}
 		
 	}
@@ -263,7 +263,7 @@ public class PlayerEvents implements Listener {
 	public void onArrowPickup(PlayerPickupItemEvent event) {
 		Item arrow = event.getItem();
 		Client client = Client.getClient(event.getPlayer());
-		if(arrow == new ItemStack(Material.ARROW) && (client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning())) {
+		if(arrow == new ItemStack(Material.ARROW) && (client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning())) {
 			event.setCancelled(true);
 		}
 	}
@@ -293,7 +293,7 @@ public class PlayerEvents implements Listener {
 			team = null;
 		}
 		
-		Scrimmage.broadcast(format, team);
+		Rixor.broadcast(format,team);
 		ServerLog.info(format);
 	}
 

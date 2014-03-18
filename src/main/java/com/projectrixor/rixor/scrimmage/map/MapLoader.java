@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
 import com.projectrixor.rixor.scrimmage.utils.ConversionUtil;
 import org.dom4j.Document;
@@ -12,7 +13,6 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import lombok.Getter;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
 import com.projectrixor.rixor.scrimmage.map.extras.Contributor;
 import com.projectrixor.rixor.scrimmage.map.region.Region;
 import com.projectrixor.rixor.scrimmage.rotation.RotationSlot;
@@ -85,7 +85,7 @@ public class MapLoader {
 			try {
 				this.maxbuildheight = Integer.parseInt(root.element("maxbuildheight").getText());
 			} catch(NumberFormatException e) {
-				Scrimmage.getInstance().getLogger().info("Failed to load max build height for '" + name + "'...");
+				Rixor.getInstance().getLogger().info("Failed to load max build height for '" + name + "'...");
 			}
 		}
 		
@@ -117,7 +117,7 @@ public class MapLoader {
 		// this.filters = filters;
 		
 		long finish = System.currentTimeMillis();
-		Scrimmage.getInstance().getLogger().info("Loaded '" + name + "' taking " + (finish - start) + "ms!");
+		Rixor.getInstance().getLogger().info("Loaded '" + name + "' taking " + (finish - start) + "ms!");
 		Map.mapcommand.add(this.name);
 		ConversionUtil.commaList(Map.mapcommand);
 	}
@@ -139,7 +139,7 @@ public class MapLoader {
 	
 	public static MapLoader getLoader(File file) {
 		if(!isLoadable(file)) {
-			Scrimmage.getInstance().getLogger().info("File !isLoadable() when trying to getLoader() - return null;");
+			Rixor.getInstance().getLogger().info("File !isLoadable() when trying to getLoader() - return null;");
 			return null;
 		}
 		
@@ -148,18 +148,18 @@ public class MapLoader {
 		try {
 			doc = reader.read(file);
 		} catch (DocumentException e) {
-			Scrimmage.getInstance().getLogger().info("File fired DocumentException when trying to getLoader() - return null;");
+			Rixor.getInstance().getLogger().info("File fired DocumentException when trying to getLoader() - return null;");
 			return null;
 		}
 		
 		if(doc == null)
-			Scrimmage.getInstance().getLogger().info("Document is null?");
+			Rixor.getInstance().getLogger().info("Document is null?");
 		return new MapLoader(file, doc);
 	}
 	
 	private List<String> getList(String container, String contains) {
 		if(doc == null)
-			Scrimmage.getInstance().getLogger().info("Document is null?");
+			Rixor.getInstance().getLogger().info("Document is null?");
 		
 		Element root = doc.getRootElement();
 		

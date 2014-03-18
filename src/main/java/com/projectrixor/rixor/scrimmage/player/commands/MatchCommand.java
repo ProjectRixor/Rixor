@@ -1,6 +1,6 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.Var;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.extras.Contributor;
@@ -19,13 +19,13 @@ public class MatchCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String cmdl, String[] args) {
 		List<String> pendingSend = new ArrayList<>();
 		/*Current Map*/
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		
 		//Client client = Client.getClient((Player) sender);
 		
 		String score = ChatColor.AQUA + "Score: ";
 		
-		Rotation rot = Scrimmage.getRotation();
+		Rotation rot = Rixor.getRotation();
 
 		pendingSend.add(ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "---------------------" + ChatColor.DARK_AQUA + map.getName() + ChatColor.GOLD + "" + ChatColor.STRIKETHROUGH + "---------------------");
 		pendingSend.add(ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "Objective: " + ChatColor.RESET + "" + ChatColor.GOLD + map.getObjective());

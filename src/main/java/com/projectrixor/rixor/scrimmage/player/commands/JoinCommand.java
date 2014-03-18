@@ -3,7 +3,7 @@ package com.projectrixor.rixor.scrimmage.player.commands;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.sk89q.minecraft.util.commands.CommandContext;
 import com.sk89q.minecraft.util.commands.CommandException;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 
@@ -18,10 +18,10 @@ public class JoinCommand{
 		if(sender instanceof Player == false) {
 			throw new CommandException("This command is for players only!");
 		}
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		Client client = Client.getClient((Player) sender);
 
-		if (Scrimmage.getRotation().getSlot().getMatch().isHasEnded()){
+		if (Rixor.getRotation().getSlot().getMatch().isHasEnded()){
 			throw new CommandException("The match has ended! Please wait for the server to cycle.");
 		}
 
@@ -39,7 +39,7 @@ public class JoinCommand{
 		if (client.getTeam().equals(team)) {
 			sender.sendMessage(ChatColor.RED + "You are already on that team!");
 		} else {
-			Scrimmage.broadcast(team.getColor() + sender.getName() + ChatColor.GRAY + " has joined the " + team.getColor() + team.getDisplayName() + ChatColor.GRAY + ".");
+			Rixor.broadcast(team.getColor()+sender.getName()+ChatColor.GRAY+" has joined the "+team.getColor()+team.getDisplayName()+ChatColor.GRAY+".");
 	    }
 		client.setTeam(team);
 		((Player) sender).setScoreboard(team.getMap().getBoard());

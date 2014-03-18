@@ -1,7 +1,7 @@
 package com.projectrixor.rixor.scrimmage.utils;
 
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -19,7 +19,7 @@ public class DownloadMapUtil {
 		try
 		{
 			URL url1 = new URL("http://update.masterejay.us/maps/" + parsedMapName + ".zip");
-			Scrimmage.debug(parsedMapName, ".");
+			Rixor.debug(parsedMapName,".");
 			URLConnection connection = url1.openConnection();
 
 			ByteArrayOutputStream result1 = new ByteArrayOutputStream();
@@ -34,7 +34,7 @@ public class DownloadMapUtil {
 				amount = input1.read(buffer);
 
 				returnValue = result1.toString();
-				Scrimmage.debug(returnValue, ".");
+				Rixor.debug(returnValue,".");
 				if (returnValue.contains("Not Found")){
 				   return false;
 				}

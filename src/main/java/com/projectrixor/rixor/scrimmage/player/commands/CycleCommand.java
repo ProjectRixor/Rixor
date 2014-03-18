@@ -1,12 +1,12 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.utils.ConversionUtil;
 import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
 import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.minecraft.util.commands.CommandPermissionsException;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
 import com.projectrixor.rixor.scrimmage.match.Match;
 
 import org.bukkit.Bukkit;
@@ -25,7 +25,7 @@ public class CycleCommand {
 			}
 		}
 		
-		Match match = Scrimmage.getRotation().getSlot().getMatch();
+		Match match = Rixor.getRotation().getSlot().getMatch();
 		if(match.isCurrentlyRunning()) {
 			match.end(true);
 		}
@@ -38,10 +38,10 @@ public class CycleCommand {
 				throw new CommandException("Please supply a valid time greater than or equal to 1.");
 			}
 		
-		if(!match.isCurrentlyCycling()) Scrimmage.getRotation().getSlot().getMatch().stop();
-		else Scrimmage.getRotation().getSlot().getMatch().setCycling(time);
+		if(!match.isCurrentlyCycling()) Rixor.getRotation().getSlot().getMatch().stop();
+		else Rixor.getRotation().getSlot().getMatch().setCycling(time);
 		
-		Scrimmage.getRotation().getSlot().getMatch().cycle(time);
+		Rixor.getRotation().getSlot().getMatch().cycle(time);
 		for (Player Online : Bukkit.getOnlinePlayers()) {
 			if (Client.getClient((Player) Online).isRanked()) {
 				Online.sendMessage(ChatColor.WHITE + "[" + ChatColor.GOLD + "A" + ChatColor.WHITE + "] " + (Client.getClient((Player) sender).getStars()) + (Client.getClient((Player) sender).getTeam().getColor()) + sender.getName() + ChatColor.WHITE + " has started the cycle at " + ChatColor.GOLD + time);

@@ -1,6 +1,6 @@
 package com.projectrixor.rixor.scrimmage.map.objective;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
@@ -76,7 +76,7 @@ public class TeamObjective {
 
 	private void checkForWinner(MapTeam whoCompleted){
 		if(whoCompleted.getCompleted() == getTeam().getObjectives().size())  {
-			Scrimmage.getRotation().getSlot().getMatch().end(whoCompleted);
+			Rixor.getRotation().getSlot().getMatch().end(whoCompleted);
 		}
 	}
 
@@ -86,7 +86,7 @@ public class TeamObjective {
 	
 	public void setComplete(boolean complete, MapTeam whoCompleted) {
 		destroyed = true;
-		//Scrimmage.getInstance().getLogger().info(getName() + " and " + getType().toString() + " and " + getTeam().getDisplayName() + " and " + getTouched());
+		//Rixor.getInstance().getLogger().info(getName() + " and " + getType().toString() + " and " + getTeam().getDisplayName() + " and " + getTouched());
 		if (complete){
 			for (TeamObjective t : whoCompleted.getObjectives()){
 				if (t.getName().equals(getName()) && t.getType() == getType()){

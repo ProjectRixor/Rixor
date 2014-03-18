@@ -3,7 +3,7 @@ package com.projectrixor.rixor.scrimmage.map.region;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
 import com.projectrixor.rixor.scrimmage.utils.RegionUtil;
 import lombok.Getter;
@@ -92,7 +92,7 @@ public class Region {
 	 * The element variable is actually the root element - pretty obvious from the code...
 	 */
 	public Region(Map map, Element element, @NonNull RegionType type) {
-		MAX_BUILD_HEIGHT = Scrimmage.getInstance().getServer().getWorlds().get(0).getMaxHeight();
+		MAX_BUILD_HEIGHT = Rixor.getInstance().getServer().getWorlds().get(0).getMaxHeight();
 		regions = new ArrayList<ConfiguredRegion>();
 		this.map = map;
 		

@@ -1,9 +1,9 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
 import com.projectrixor.rixor.scrimmage.player.PlayerChatEvent;
 
 import org.bukkit.command.CommandSender;
@@ -18,7 +18,7 @@ public class GlobalCommand  {
 		String message = "";
 
 		message = args.getJoinedStrings(0);
-		Scrimmage.callEvent(new PlayerChatEvent(Client.getClient((Player)sender), message, false));
+		Rixor.callEvent(new PlayerChatEvent(Client.getClient((Player)sender),message,false));
 	}
 	
 }

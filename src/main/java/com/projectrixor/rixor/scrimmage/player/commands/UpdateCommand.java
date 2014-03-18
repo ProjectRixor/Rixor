@@ -1,6 +1,6 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.utils.UpdateUtil;
 import com.sk89q.minecraft.util.commands.Command;
@@ -23,6 +23,6 @@ public class UpdateCommand {
 		}
 
 		UpdateUtil.checkForUpdate("http://update.masterejay.us/Version.txt","http://update.masterejay.us/Rixor.jar",
-				Scrimmage.getInstance().getDescription(),(Player)sender);
+				Rixor.getInstance().getDescription(),(Player)sender);
 	}
 }

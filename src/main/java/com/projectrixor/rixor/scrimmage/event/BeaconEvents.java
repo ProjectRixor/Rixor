@@ -2,7 +2,7 @@ package com.projectrixor.rixor.scrimmage.event;
 
 /*import java.util.List;
 
-import Scrimmage;
+import Rixor;
 import Map;
 import Filter;*/
 
@@ -20,7 +20,7 @@ public class BeaconEvents implements Listener {
 	
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		/*Map map = Scrimmage.getRotation().getSlot().getMap();*/
+		/*Map map = Rixor.getRotation().getSlot().getMap();*/
 		if(event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.LEFT_CLICK_BLOCK)
 			return;
 		

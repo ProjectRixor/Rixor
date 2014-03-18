@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.projectrixor.rixor.scrimmage.player.Client;
 import lombok.Getter;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 
@@ -46,7 +46,7 @@ public class MonumentObjective extends TeamObjective {
 	}
 	
 	public boolean addBreak(Location location, Client breaker) {
-	//	Scrimmage.debug("Monument Test 1", "Monument");
+	//	Rixor.debug("Monument Test 1", "Monument");
 		if(!isLocation(location)) return false;
 		
 		MonumentBlock block = getBlock(location);
@@ -99,7 +99,7 @@ public class MonumentObjective extends TeamObjective {
 			}
 			
 			String message = teamandname + destroyedby + destroyed;
-			Scrimmage.broadcast(message);
+			Rixor.broadcast(message);
 		}
 		
 		setComplete(isDestroyed(), breaker.getTeam());

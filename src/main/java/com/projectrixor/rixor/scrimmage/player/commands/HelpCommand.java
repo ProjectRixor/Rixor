@@ -158,7 +158,7 @@ public class HelpCommand implements CommandExecutor {
 /*
 package me.projectrixor.rixor.scrimmage.player.commands;
 
-import Scrimmage;
+import Rixor;
 import Map;
 import MapTeam;
 import Client;
@@ -181,7 +181,7 @@ public class SetTeamCommand implements CommandExecutor {
 			}
 		}
 		
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		
 		if(args.length < 2) {
 			sender.sendMessage(ChatColor.RED + "Invalid Arguments supplied!");

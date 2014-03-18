@@ -1,6 +1,6 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.match.Match;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.sk89q.minecraft.util.commands.Command;
@@ -24,15 +24,15 @@ public class RestartCommand {
 			}
 		}
 
-		Match match = Scrimmage.getRotation().getSlot().getMatch();
+		Match match = Rixor.getRotation().getSlot().getMatch();
 		if(match.isCurrentlyRunning()) {
 			match.end(true);
 		}
 		if (args.argsLength() == 0){
-			Scrimmage.getRotation().getSlot().getMatch().restart(30);
+			Rixor.getRotation().getSlot().getMatch().restart(30);
 		}
 		else {
-			Scrimmage.getRotation().getSlot().getMatch().restart(args.getInteger(0));
+			Rixor.getRotation().getSlot().getMatch().restart(args.getInteger(0));
 		}
 
 	}

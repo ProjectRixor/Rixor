@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.Var;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
@@ -94,7 +94,7 @@ public class Match {
 			
 			@Override
 			public void runnable() {
-				cycling(Scrimmage.getRotation().getNext());
+				cycling(Rixor.getRotation().getNext());
 			}
 			
 		};
@@ -203,8 +203,8 @@ public class Match {
 		}
 		setCurrentlyStarting(true);
 		if(starting == 0) {
-			Scrimmage.broadcast(ChatColor.DARK_PURPLE + "" + ChatColor.STRIKETHROUGH + "-------------------------");
-			Scrimmage.broadcast(ChatColor.GOLD + "The match has started!");
+			Rixor.broadcast(ChatColor.DARK_PURPLE+""+ChatColor.STRIKETHROUGH+"-------------------------");
+			Rixor.broadcast(ChatColor.GOLD+"The match has started!");
 			List<String> allteams = new ArrayList<String>();
 			String todo = "";
 			String finalteam = "";
@@ -221,15 +221,15 @@ public class Match {
 				}
 			}
 			if (getMap().getTeams().size() == 1) {
-			Scrimmage.broadcast(finalteam + "" + ChatColor.RED + "" + ChatColor.BOLD + " VS " + ChatColor.GRAY + "themselves...?");
+			Rixor.broadcast(finalteam+""+ChatColor.RED+""+ChatColor.BOLD+" VS "+ChatColor.GRAY+"themselves...?");
 			} else {
-			Scrimmage.broadcast(todo);
+			Rixor.broadcast(todo);
 			}
-			Scrimmage.broadcast(ChatColor.DARK_PURPLE + "" + ChatColor.STRIKETHROUGH + "-------------------------");
+			Rixor.broadcast(ChatColor.DARK_PURPLE+""+ChatColor.STRIKETHROUGH+"-------------------------");
 			for(MapTeam team : getMap().getTeams()) {
 				team.setScore(0);
 			}
-			Scrimmage.getMap().reloadSidebar(true,SidebarType.OBJECTIVES);
+			Rixor.getMap().reloadSidebar(true,SidebarType.OBJECTIVES);
 			for (Player Online : Bukkit.getOnlinePlayers()) {
 				Online.playSound(Online.getLocation(), Sound.NOTE_PIANO, 100, 1);
 				}
@@ -285,7 +285,7 @@ public class Match {
 			if(core.getStage().getNext() != null && core.getStage().getNext().getTime() == timing) {
 				String prefix = ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "> > > ";
 				String suffix = ChatColor.DARK_AQUA + "" + ChatColor.BOLD + " < < <";
-				Scrimmage.broadcast(prefix + ChatColor.RED + (core.getStage().name() + " CORE MODE") + suffix);
+				Rixor.broadcast(prefix+ChatColor.RED+(core.getStage().name()+" CORE MODE")+suffix);
 				core.setStage(core.getStage().getNext());
 			}
 		}
@@ -344,7 +344,7 @@ public class Match {
 					score += team.getColor() + "" + team.getScore() + " ";
 				if(getMap().getTimeLimit() > 0)
 					score += ChatColor.RED + ConversionUtil.formatTime(getMap().getTimeLimit() - getTiming());
-				Scrimmage.broadcast(score);
+				Rixor.broadcast(score);
 			}
 		} else {
 			if(timing % 1 == 0) {
@@ -395,7 +395,7 @@ public class Match {
 			for (Player Online : Bukkit.getOnlinePlayers()) {
 				BarAPI.setMessage(Online, text + ChatColor.RED + " wins!", 100f);
 				}
-			Scrimmage.broadcast(ChatColor.BOLD + text + ChatColor.GRAY + " wins!");
+			Rixor.broadcast(ChatColor.BOLD+text+ChatColor.GRAY+" wins!");
 
 			for (Player p : Bukkit.getOnlinePlayers()){
 				if (text.equals(Client.getClient(p).getTeam().getDisplayName()) || text.equalsIgnoreCase("tie!")){
@@ -422,9 +422,9 @@ public class Match {
 			BarAPI.setMessage(Online, text + ChatColor.RED + " Wins!", 100f);
 			}
 		Var.teams.remove(Var.teams);
-		Scrimmage.broadcast(ChatColor.DARK_PURPLE + "# # # # # # # # # # # # # # # # ");
-		Scrimmage.broadcast(ChatColor.DARK_PURPLE + "# # " + ChatColor.GOLD + "The match has ended!" + ChatColor.DARK_PURPLE + " # #");
-		Scrimmage.broadcast(ChatColor.DARK_PURPLE + "# # # # # # # # # # # # # # # #");
+		Rixor.broadcast(ChatColor.DARK_PURPLE+"# # # # # # # # # # # # # # # # ");
+		Rixor.broadcast(ChatColor.DARK_PURPLE+"# # "+ChatColor.GOLD+"The match has ended!"+ChatColor.DARK_PURPLE+" # #");
+		Rixor.broadcast(ChatColor.DARK_PURPLE+"# # # # # # # # # # # # # # # #");
 		timingTask.getTask().cancel();
 		/* cyclingTask.repeatAsync(20, 20);
 		Auto Cycle*/
@@ -458,8 +458,8 @@ public class Match {
 				p1.kickPlayer(ChatColor.GREEN + "Server has shutdown! " + ChatColor.GOLD + "Rejoin!");
 			}
 
-			for (Map m : Scrimmage.getMapsPlayed()){
-				Scrimmage.getInstance().getServer().unloadWorld(m.getWorld(), false);
+			for (Map m : Rixor.getMapsPlayed()){
+				Rixor.getInstance().getServer().unloadWorld(m.getWorld(), false);
 				//Scrimmage.getInstance().getLogger().info(m.getName() + " " + m.getFolder().getAbsolutePath());
 				//for (File file : m.getFolder().listFiles()) {
 				//	try{
@@ -469,7 +469,7 @@ public class Match {
 			//		}
 			//	}
 		//	}
-			Scrimmage.getInstance().getServer().shutdown();
+			Rixor.getInstance().getServer().shutdown();
 		}
 		restarting--;
 		}
@@ -507,11 +507,11 @@ public class Match {
 			Var.canSetNext = 0;
 			cyclingTask.getTask().cancel();
 			setCurrentlyCycling(false);
-			Scrimmage.getRotation().setSlot(next);
+			Rixor.getRotation().setSlot(next);
 			for(Client client : Client.getClients())
 				client.setTeam(next.getMap().getObservers(), true, true, true);
 			next.getMatch().start();
-			Scrimmage.addMapToMapsPlayed(next.getMap());
+			Rixor.addMapToMapsPlayed(next.getMap());
 			hasEnded = false;
 			return true;
 		}

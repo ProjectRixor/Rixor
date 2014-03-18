@@ -1,6 +1,6 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
-import com.projectrixor.rixor.scrimmage.Scrimmage;
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import me.confuser.barapi.BarAPI;
 import com.projectrixor.rixor.scrimmage.match.Match;
@@ -23,10 +23,10 @@ public class StopCommand implements CommandExecutor {
 			}
 		}
 		
-		Match match = Scrimmage.getRotation().getSlot().getMatch();
+		Match match = Rixor.getRotation().getSlot().getMatch();
 		if(match.isCurrentlyRunning()) {
 			match.end(true);
-			Scrimmage.getRotation().getSlot().getMatch().stop();
+			Rixor.getRotation().getSlot().getMatch().stop();
 			
 			for (Player Online : Bukkit.getOnlinePlayers()) {
 				if (Client.getClient((Player) Online).isRanked()) {
@@ -36,7 +36,7 @@ public class StopCommand implements CommandExecutor {
 			return true;
 		}
 		
-		Scrimmage.getRotation().getSlot().getMatch().stop();
+		Rixor.getRotation().getSlot().getMatch().stop();
 		for (Player Online : Bukkit.getOnlinePlayers()) {
 			if (Client.getClient((Player) Online).isRanked()) {
 				Online.sendMessage(ChatColor.WHITE + "[" + ChatColor.GOLD + "A" + ChatColor.WHITE + "] " + (Client.getClient((Player) sender).getStars()) + (Client.getClient((Player) sender).getTeam().getColor()) + sender.getName() + ChatColor.WHITE + " has forced the timer to stop.");

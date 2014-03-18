@@ -1,6 +1,6 @@
 name: Rixor
-main: com.projectrixor.rixor.scrimmage.Scrimmage
-version: 1.2
+main: com.projectrixor.rixor.scrimmage.Rixor
+version: 1.3
 depend: [WorldEdit]
 author: ProjectRixor Team
 load: STARTUP
@@ -16,16 +16,10 @@ commands:
     description: Stop/End the game.
   start:
     description: Start the starting timer.
-  bb:
-    aliases: [breakblocks]
-    description: Break Blocks. (Buggy)
   staff:
     description: Lists off staff.
   help:
     description: Help on ParaPGM commands.
-  stoptheserver:
-    aliases: [sts]
-    description: Stops the server.
   request:
     description: Send a request to online staff.
   match:

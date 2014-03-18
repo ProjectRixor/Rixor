@@ -2,8 +2,8 @@ package com.projectrixor.rixor.scrimmage.map.filter;
 
 import java.util.List;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.filter.events.BlockChangeEvent;
-import com.projectrixor.rixor.scrimmage.Scrimmage;
 import com.projectrixor.rixor.scrimmage.map.Map;
 
 import com.projectrixor.rixor.scrimmage.player.Client;
@@ -43,7 +43,7 @@ public class FilterEvents implements Listener {
 	@EventHandler(priority = EventPriority.LOW)
 	public void onBlockChange(BlockChangeEvent event) {
 		Map map = event.getMap();
-		if(!Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+		if(!Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
 			event.setCancelled(true);
 			return;
 		}
@@ -76,20 +76,20 @@ public class FilterEvents implements Listener {
 		Player player = event.getPlayer();
 		Client client = Client.getClient(player);
 		
-		if(client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+		if(client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
 			event.setCancelled(true);
 			return;
 		}
 
-		if (event.getBlockPlaced().getType() == Material.TNT && Scrimmage.getRotation().getSlot().getMap().getTntsettings().isInstantIgnite()){
+		if (event.getBlockPlaced().getType() == Material.TNT && Rixor.getRotation().getSlot().getMap().getTntsettings().isInstantIgnite()){
 			event.getBlockPlaced().setType(Material.AIR);
 			TNTPrimed tnt = event.getBlockPlaced().getWorld().spawn(event.getBlockPlaced().getLocation(), TNTPrimed.class);
 		}
 		
 		if(!client.isObserver()) {
-			Map map = Scrimmage.getRotation().getSlot().getMap();
+			Map map = Rixor.getRotation().getSlot().getMap();
 			BlockChangeEvent change = new BlockChangeEvent(event, map, client, event.getBlockReplacedState(), event.getBlockPlaced().getState());
-			Scrimmage.callEvent(change);
+			Rixor.callEvent(change);
 		}
 	}
 	
@@ -99,19 +99,19 @@ public class FilterEvents implements Listener {
 		Player player = event.getPlayer();
 		Client client = Client.getClient(player);
 		
-		if(client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+		if(client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
 			event.setCancelled(true);
 			return;
 		}
 		
 		if(!client.isObserver()) {
-			Map map = Scrimmage.getRotation().getSlot().getMap();
+			Map map = Rixor.getRotation().getSlot().getMap();
 			
 			BlockState newState = event.getBlock().getState();
 			newState.setData(new MaterialData(Material.AIR, (byte) 0));
 			
 			BlockChangeEvent change = new BlockChangeEvent(event, map, client, event.getBlock().getState(), newState);
-			Scrimmage.callEvent(change);
+			Rixor.callEvent(change);
 		}
 	}
 	
@@ -132,7 +132,7 @@ public class FilterEvents implements Listener {
 		Player player = event.getPlayer();
 		Client client = Client.getClient(player);
 		Block block = event.getBlockClicked().getRelative(event.getBlockFace());
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		
 		BlockState newState = block.getState();
 		Material update = Material.LAVA;
@@ -141,39 +141,39 @@ public class FilterEvents implements Listener {
 		
 		BlockState oldState = block.getState();
 		BlockChangeEvent change = new BlockChangeEvent(event, map, client, oldState, newState);
-		Scrimmage.callEvent(change);
+		Rixor.callEvent(change);
 	}
 
 	@EventHandler(priority = EventPriority.LOW)
 	public void onBlockForm(BlockFormEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		BlockChangeEvent change = new BlockChangeEvent(event, map, null, event.getBlock().getState(), event.getNewState());
-		Scrimmage.callEvent(change);
+		Rixor.callEvent(change);
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
 	public void onBlockSpread(BlockSpreadEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		BlockChangeEvent change = new BlockChangeEvent(event, map, null, event.getBlock().getState(), event.getNewState());
-		Scrimmage.callEvent(change);
+		Rixor.callEvent(change);
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
 	public void onBlockFromTo(BlockFromToEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		if (event.getToBlock().getType() ==Material.WATER){
 			return;
 		}
 		if (event.getToBlock().getType() != event.getBlock().getType()) {
 			BlockChangeEvent change = new BlockChangeEvent(event, map, null, event.getBlock().getState(), event.getToBlock().getState());
-			Scrimmage.callEvent(change);
+			Rixor.callEvent(change);
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
 	public void onEntityExplodeNormal(EntityExplodeEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		
 		Client client = null;
 		if(event.getEntity() instanceof TNTPrimed) {
@@ -186,65 +186,65 @@ public class FilterEvents implements Listener {
 			BlockState newState = block.getState();
 			newState.setData(new MaterialData(Material.AIR, (byte) 0));
 			BlockChangeEvent change = new BlockChangeEvent(event, map, client, block.getState(), newState);
-			Scrimmage.callEvent(change);
+			Rixor.callEvent(change);
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOW)
 	public void onBlockBurn(BlockBurnEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		BlockState newState = event.getBlock().getState();
 		newState.setData(new MaterialData(Material.AIR, (byte) 0));
 		
 		BlockChangeEvent change = new BlockChangeEvent(event, map, null, event.getBlock().getState(), newState);
-		Scrimmage.callEvent(change);
+		Rixor.callEvent(change);
 	}
 	
 	/*@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOW)
 	public void onSpawnerSpawn) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		BlockState newState = event.getBlock().getState();
 		newState.setData(new MaterialData(Material.AIR, (byte) 0));
 		
 		BlockChangeEvent change = new BlockChangeEvent(event, map, null, event.getBlock().getState(), newState);
-		Scrimmage.callEvent(change);
+		Rixor.callEvent(change);
 	}*/
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOW)
 	public void onBlockFade(BlockFadeEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		BlockState newState = event.getBlock().getState();
 		newState.setData(new MaterialData(Material.AIR, (byte) 0));
 		
 		BlockChangeEvent change = new BlockChangeEvent(event, map, null, event.getBlock().getState(), newState);
-		Scrimmage.callEvent(change);
+		Rixor.callEvent(change);
 	}
 
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOW)
 	public void onBlockPistonExtend(BlockPistonExtendEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		for (Block block : event.getBlocks()) {
 			BlockState newState = block.getRelative(event.getDirection()).getState();
 			newState.setData(new MaterialData(block.getType(), block.getData()));
 			BlockChangeEvent change = new BlockChangeEvent(event, map, null, block.getRelative(event.getDirection()).getState(), newState);
-			Scrimmage.callEvent(change);
+			Rixor.callEvent(change);
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOW)
 	public void onBlockPistonRetract(BlockPistonRetractEvent event) {
-		Map map = Scrimmage.getRotation().getSlot().getMap();
+		Map map = Rixor.getRotation().getSlot().getMap();
 		if(event.isSticky()) {
 			BlockState state = event.getBlock().getWorld().getBlockAt(event.getRetractLocation()).getState();
 			BlockState newState = state;
 			newState.setData(new MaterialData(Material.AIR, (byte) 0));
 			BlockChangeEvent change = new BlockChangeEvent(event, map, null, state, newState);
-			Scrimmage.callEvent(change);
+			Rixor.callEvent(change);
 		}
 	}
 	
@@ -253,13 +253,13 @@ public class FilterEvents implements Listener {
 		Player player = event.getPlayer();
 		Client client = Client.getClient(player);
 
-		if(client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+		if(client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
 			event.setCancelled(true);
 			if(event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.CHEST && event.getAction() == Action.RIGHT_CLICK_BLOCK)
 				player.openInventory(((Chest) event.getClickedBlock().getState()).getBlockInventory());
 			return;
 		}
-	/*	if(client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+	/*	if(client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
 			event.setCancelled(true);
 			if(event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.CHEST && event.getAction() == Action.RIGHT_CLICK_BLOCK)
 				player.openInventory(((Chest) event.getClickedBlock().getState()).getBlockInventory());
@@ -271,7 +271,7 @@ public class FilterEvents implements Listener {
      public void onPlayerClick(PlayerInteractEntityEvent e) {
 		 Player player = e.getPlayer();
 			Client client = Client.getClient(player);
-		 if (client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+		 if (client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
     	 if (e.getRightClicked() instanceof Player) {
     		 Player clicked = (Player) e.getRightClicked();
     		 player.openInventory((Inventory) clicked.getInventory());
@@ -293,13 +293,13 @@ public class FilterEvents implements Listener {
 		Player player = event.getPlayer();
 		Client client = Client.getClient(player);
 		
-		if(client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
+		if(client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) {
 			event.setCancelled(true);
 			return;
 		}
 		
 		if(!client.isObserver()) {
-			/*Map map = Scrimmage.getRotation().getSlot().getMap();
+			/*Map map = Rixor.getRotation().getSlot().getMap();
 			*/
 		}
 	}
@@ -314,13 +314,13 @@ public class FilterEvents implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		Client client = Client.getClient(player);
 		
-		if((client.isObserver() || !Scrimmage.getRotation().getSlot().getMatch().isCurrentlyRunning()) && event.getInventory().getType() != InventoryType.PLAYER) {
+		if((client.isObserver() || !Rixor.getRotation().getSlot().getMatch().isCurrentlyRunning()) && event.getInventory().getType() != InventoryType.PLAYER) {
 			event.setCancelled(true);
 			return;
 		}
 		
 		if(!client.isObserver()) {
-			/*Map map = Scrimmage.getRotation().getSlot().getMap();
+			/*Map map = Rixor.getRotation().getSlot().getMap();
 			*/
 		}
 	}
