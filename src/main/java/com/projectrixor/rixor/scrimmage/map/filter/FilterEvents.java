@@ -2,7 +2,7 @@ package com.projectrixor.rixor.scrimmage.map.filter;
 
 import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.Map;
-import com.projectrixor.rixor.scrimmage.map.filter.events.BlockChangeEvent;
+import com.projectrixor.rixor.scrimmage.api.BlockChangeEvent;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

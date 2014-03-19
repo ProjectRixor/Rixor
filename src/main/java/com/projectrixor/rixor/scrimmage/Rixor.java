@@ -170,7 +170,7 @@ public class Rixor extends JavaPlugin {
 			if (e.getCause() instanceof NumberFormatException) {
 				sender.sendMessage(ChatColor.RED + "Number expected, string received instead.");
 			} else {
-				sender.sendMessage(ChatColor.RED + "An error has occurred. See console.");
+				sender.sendMessage(ChatColor.RED + "An error has occurred. Please send the console output to a Rixor Dev Team member");
 				e.printStackTrace();
 			}
 		} catch (CommandException e) {
@@ -286,6 +286,8 @@ public class Rixor extends JavaPlugin {
 			throw new IOException("Error adding " + url + " to system classloader");
 		}
 	}
+
+
 	
 	public static int random(int min, int max) {
 		return (int) (min + (Math.random() * (max - min)));

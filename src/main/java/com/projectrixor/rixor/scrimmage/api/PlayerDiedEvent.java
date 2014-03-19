@@ -1,4 +1,4 @@
-package com.projectrixor.rixor.scrimmage.match.events;
+package com.projectrixor.rixor.scrimmage.api;
 
 import com.projectrixor.rixor.scrimmage.map.Map;
 import org.bukkit.entity.Player;

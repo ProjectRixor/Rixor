@@ -2,7 +2,7 @@ package com.projectrixor.rixor.scrimmage.tracker;
 
 import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
-import com.projectrixor.rixor.scrimmage.match.events.PlayerDiedEvent;
+import com.projectrixor.rixor.scrimmage.api.PlayerDiedEvent;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.utils.SchedulerUtil;
 import org.bukkit.ChatColor;

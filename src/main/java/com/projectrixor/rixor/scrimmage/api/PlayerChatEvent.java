@@ -1,5 +1,6 @@
-package com.projectrixor.rixor.scrimmage.player;
+package com.projectrixor.rixor.scrimmage.api;
 
+import com.projectrixor.rixor.scrimmage.player.Client;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
