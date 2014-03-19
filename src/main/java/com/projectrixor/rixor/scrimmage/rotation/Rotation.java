@@ -60,20 +60,21 @@ public class Rotation {
 	
 	public void setNext(RotationSlot slot) {
 		int current = getLocation(slot);
+
 		
-		List<RotationSlot> pre = rotation.subList(0, current);
-		List<RotationSlot> aft = new ArrayList<RotationSlot>();
-		try {
-			aft = rotation.subList(current + 1, rotation.size());
-		} catch(Exception e) {
-			 Rixor.getInstance().getLogger().severe(e.getMessage());
+		List<RotationSlot> rotation = getRotation();
+		slot.load().getMap().getName();
+		//rotation.remove(current);
+		rotation.add(current - rotation.size() + 1, slot);
+
+		for (RotationSlot s : rotation){
+			s.load();
+			Rixor.getInstance().getLogger().info(s.getMap().getName());
 		}
-		
-		List<RotationSlot> rotation = new ArrayList<RotationSlot>();
-		rotation.addAll(pre);
-		rotation.add(slot);
-		rotation.addAll(aft);
-		
+
+		Rixor.getInstance().getLogger().info(getNext().getMap().getName());
+
+
 		this.rotation = rotation;
 	}
 	
@@ -96,7 +97,7 @@ public class Rotation {
 		int current = getLocation(getSlot());
 		
 		try {
-			return getSlot(current + 1);
+			return getSlot(current);
 		} catch(IndexOutOfBoundsException ioobe) {
 			return null;
 		}

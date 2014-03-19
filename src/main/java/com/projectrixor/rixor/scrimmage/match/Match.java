@@ -419,8 +419,8 @@ public class Match {
 		Rixor.broadcast(ChatColor.DARK_PURPLE+"# # "+ChatColor.GOLD+"The match has ended!"+ChatColor.DARK_PURPLE+" # #");
 		Rixor.broadcast(ChatColor.DARK_PURPLE+"# # # # # # # # # # # # # # # #");
 		timingTask.getTask().cancel();
-		/* cyclingTask.repeatAsync(20, 20);
-		Auto Cycle*/
+		 cyclingTask.repeatAsync(20, 20);
+		//Auto Cycle*/
 		for(MapTeam team : getMap().getTeams())
 			for(Client client : team.getPlayers()) {
 				//client.setTeam(getMap().getObservers(), true, false, false);

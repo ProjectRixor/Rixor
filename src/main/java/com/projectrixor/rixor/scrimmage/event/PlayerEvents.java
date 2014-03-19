@@ -106,10 +106,10 @@ public class PlayerEvents implements Listener {
 				killer.getInventory().addItem(Rixor.getRotation().getSlot().getMap().getKillReward());
 				killer.playSound(killer.getLocation(), Sound.ORB_PICKUP, 10, 1);
 				killer.sendMessage(ChatColor.YELLOW + "" + ChatColor.ITALIC + "+1" + ChatColor.RESET + ChatColor.RED + " | " + ChatColor.GOLD + "Kill");
-				StatTracker.gainKill(killer.getDisplayName());
+				//StatTracker.gainKill(killer.getDisplayName());
 			}
 			Player dead = (Player)event.getEntity();
-			StatTracker.gainDeath(dead.getDisplayName());
+			//StatTracker.gainDeath(dead.getDisplayName());
 			dead.playSound(dead.getLocation(), Sound.ENDERMAN_SCREAM, 10, 1);
 			dead.sendMessage(ChatColor.RED + "" + ChatColor.ITALIC + "+1" + ChatColor.RESET + ChatColor.GOLD + " | " + ChatColor.DARK_RED + "Death");
 			

@@ -144,7 +144,7 @@ public class Rixor extends JavaPlugin {
 			if(!zips.exists())
 				zips.mkdirs();
 			
-			ZipUtil.unZip(file, getMapRoot());
+			//ZipUtil.unZip(file, getMapRoot());
 			try {
 				FileUtil.move(file, new File(zips.getAbsolutePath() + "/" + file.getName()));
 			} catch (IOException e) {
