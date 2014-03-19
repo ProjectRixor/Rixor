@@ -7,7 +7,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class BlockChangeEvent extends Event {
+public class BlockChangeEvent extends Event{
 	
     private static final HandlerList handlers = new HandlerList();
     

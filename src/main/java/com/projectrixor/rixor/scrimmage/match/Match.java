@@ -2,6 +2,8 @@ package com.projectrixor.rixor.scrimmage.match;
 
 import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.Var;
+import com.projectrixor.rixor.scrimmage.api.MatchCycleEvent;
+import com.projectrixor.rixor.scrimmage.api.MatchStartEvent;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
@@ -196,6 +198,7 @@ public class Match {
 		}
 		setCurrentlyStarting(true);
 		if(starting == 0) {
+			Rixor.callEvent(new MatchStartEvent(getMap(), getSlot().getMatch()));
 			Rixor.broadcast(ChatColor.DARK_PURPLE+""+ChatColor.STRIKETHROUGH+"-------------------------");
 			Rixor.broadcast(ChatColor.GOLD+"The match has started!");
 			List<String> allteams = new ArrayList<String>();
@@ -497,12 +500,15 @@ public class Match {
 		
 		setCurrentlyCycling(true);
 		if(cycling == 0) {
+
 			Var.canSetNext = 0;
 			cyclingTask.getTask().cancel();
 			setCurrentlyCycling(false);
+			Rixor.callEvent(new MatchCycleEvent(getMap(), next.getMap()));
 			Rixor.getRotation().setSlot(next);
 			for(Client client : Client.getClients())
 				client.setTeam(next.getMap().getObservers(), true, true, true);
+
 			next.getMatch().start();
 			Rixor.addMapToMapsPlayed(next.getMap());
 			hasEnded = false;
