@@ -1,25 +1,24 @@
 package com.projectrixor.rixor.scrimmage.player;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.Rixor;
-import lombok.Getter;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
-// import ServerLog;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.extras.Contributor;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
+import java.util.List;
+
+// import ServerLog;
+
 public class Client {
 	
-	static @Getter List<Client> clients = new ArrayList<Client>();
+	static List<Client> clients = new ArrayList<Client>();
 	
 	public static Client getClient(Player player) {
 		for(Client client : clients)
@@ -28,17 +27,21 @@ public class Client {
 		
 		return null;
 	}
-	@Getter List<Contributor> authors;
-	@Getter Player player;
-	@Getter MapTeam team;
-	@Getter PermissionAttachment perms;
-	@Getter MapLoader loader;
+	List<Contributor> authors;
+	Player player;
+	MapTeam team;
+	PermissionAttachment perms;
+	MapLoader loader;
 	
 	public Client(Player player) {
 		this.player = player;
 		this.perms = player.addAttachment(Rixor.getInstance());
 	}
-	
+
+	public static List<Client> getClients(){
+		return Client.clients;
+	}
+
 	public boolean hasTouched() {
 		return false;
 	}
@@ -148,5 +151,24 @@ public class Client {
 			}
 		}
 	}
-	
+
+	public List<Contributor> getAuthors(){
+		return this.authors;
+	}
+
+	public Player getPlayer(){
+		return this.player;
+	}
+
+	public MapTeam getTeam(){
+		return this.team;
+	}
+
+	public PermissionAttachment getPerms(){
+		return this.perms;
+	}
+
+	public MapLoader getLoader(){
+		return this.loader;
+	}
 }

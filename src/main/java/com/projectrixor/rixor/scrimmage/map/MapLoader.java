@@ -1,45 +1,42 @@
 package com.projectrixor.rixor.scrimmage.map;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.Rixor;
+import com.projectrixor.rixor.scrimmage.map.extras.Contributor;
 import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
+import com.projectrixor.rixor.scrimmage.map.region.Region;
+import com.projectrixor.rixor.scrimmage.rotation.RotationSlot;
 import com.projectrixor.rixor.scrimmage.utils.ConversionUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import lombok.Getter;
-import com.projectrixor.rixor.scrimmage.map.extras.Contributor;
-import com.projectrixor.rixor.scrimmage.map.region.Region;
-import com.projectrixor.rixor.scrimmage.rotation.RotationSlot;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapLoader {
 	
-	@Getter File folder;
-	@Getter Document doc;
+	File folder;
+	Document doc;
 	
-	@Getter Map map;
+	Map map;
 
-	@Getter String name;
-	@Getter String version;
-	@Getter String objective;
-	@Getter List<String> rules;
-	@Getter List<Contributor> authors;
-	@Getter List<Contributor> contributors;
-	@Getter List<MapTeam> teams;
-	@Getter MapTeam observers;
-	@Getter String bb;
+	String name;
+	String version;
+	String objective;
+	List<String> rules;
+	List<Contributor> authors;
+	List<Contributor> contributors;
+	List<MapTeam> teams;
+	MapTeam observers;
+	String bb;
 	
-	@Getter int maxbuildheight;
-	@Getter
+	int maxbuildheight;
 	SidebarType sidebar;
 	
-	@Getter int score = -1;
-	@Getter int time = -1;
+	int score = -1;
+	int time = -1;
 	
 	@SuppressWarnings("unchecked")
 	private MapLoader(File file, Document doc) {
@@ -211,5 +208,68 @@ public class MapLoader {
 		
 		return elements;
 	}
-	
+
+	public File getFolder(){
+		return this.folder;
+	}
+
+	public Document getDoc(){
+		return this.doc;
+	}
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public String getVersion(){
+		return this.version;
+	}
+
+	public String getObjective(){
+		return this.objective;
+	}
+
+	public List<String> getRules(){
+		return this.rules;
+	}
+
+	public List<Contributor> getAuthors(){
+		return this.authors;
+	}
+
+	public List<Contributor> getContributors(){
+		return this.contributors;
+	}
+
+	public List<MapTeam> getTeams(){
+		return this.teams;
+	}
+
+	public MapTeam getObservers(){
+		return this.observers;
+	}
+
+	public String getBb(){
+		return this.bb;
+	}
+
+	public int getMaxbuildheight(){
+		return this.maxbuildheight;
+	}
+
+	public SidebarType getSidebar(){
+		return this.sidebar;
+	}
+
+	public int getScore(){
+		return this.score;
+	}
+
+	public int getTime(){
+		return this.time;
+	}
 }

@@ -1,9 +1,6 @@
 package com.projectrixor.rixor.scrimmage.match.events;
 
-import lombok.Getter;
-import lombok.Setter;
 import com.projectrixor.rixor.scrimmage.map.Map;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -11,10 +8,10 @@ import org.bukkit.event.HandlerList;
 public class PlayerDiedEvent extends Event {
 	
     private static final HandlerList handlers = new HandlerList();
-    @Getter @Setter boolean ended = false;
-    @Getter Map map;
-    @Getter Player killed;
-    @Getter Player killer;
+    boolean ended = false;
+    Map map;
+    Player killed;
+    Player killer;
  
     public PlayerDiedEvent(Map map, Player killed, Player killer) {
     	this.map = map;
@@ -29,5 +26,24 @@ public class PlayerDiedEvent extends Event {
     public static HandlerList getHandlerList() {
         return handlers;
     }
-	
+
+	public boolean isEnded(){
+		return this.ended;
+	}
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public Player getKilled(){
+		return this.killed;
+	}
+
+	public Player getKiller(){
+		return this.killer;
+	}
+
+	public void setEnded(boolean ended){
+		this.ended=ended;
+	}
 }

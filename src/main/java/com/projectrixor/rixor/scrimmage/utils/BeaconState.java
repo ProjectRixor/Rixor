@@ -1,14 +1,14 @@
 package com.projectrixor.rixor.scrimmage.utils;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
- 
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
  
 /**
 *

@@ -1,9 +1,5 @@
 package com.projectrixor.rixor.scrimmage.player.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.utils.ConversionUtil;
 import org.bukkit.Bukkit;
@@ -12,6 +8,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StaffCommand implements CommandExecutor {
 	

@@ -1,26 +1,23 @@
 package com.projectrixor.rixor.scrimmage.map.region;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.Rixor;
+import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
 import com.projectrixor.rixor.scrimmage.utils.RegionUtil;
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
-import com.projectrixor.rixor.scrimmage.map.Map;
-
 import org.bukkit.Location;
 import org.dom4j.Element;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Region {
 	
-	@Getter @Setter public static int MAX_BUILD_HEIGHT = 0;
+	public static int MAX_BUILD_HEIGHT = 0;
 	
-	@Getter Map map;
-	@Getter List<ConfiguredRegion> regions;
-	@Getter List<Element> elements;
+	Map map;
+	List<ConfiguredRegion> regions;
+	List<Element> elements;
 	
 	public Region(Map map, Element element) {
 		List<Element> elements = new ArrayList<Element>();
@@ -155,7 +152,15 @@ public class Region {
 			}
 		}
 	}
-	
+
+	public static int getMAX_BUILD_HEIGHT(){
+		return Region.MAX_BUILD_HEIGHT;
+	}
+
+	public static void setMAX_BUILD_HEIGHT(int MAX_BUILD_HEIGHT){
+		Region.MAX_BUILD_HEIGHT=MAX_BUILD_HEIGHT;
+	}
+
 	public List<Location> getLocations() {
 		List<Location> locations = new ArrayList<Location>();
 		
@@ -489,5 +494,16 @@ public class Region {
 		
 		return locations;
 	}
-	
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public List<ConfiguredRegion> getRegions(){
+		return this.regions;
+	}
+
+	public List<Element> getElements(){
+		return this.elements;
+	}
 }

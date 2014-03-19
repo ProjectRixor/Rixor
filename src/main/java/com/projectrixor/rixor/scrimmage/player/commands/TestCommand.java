@@ -2,7 +2,6 @@ package com.projectrixor.rixor.scrimmage.player.commands;
 
 import com.projectrixor.rixor.scrimmage.utils.DownloadMapUtil;
 import com.sk89q.minecraft.util.commands.CommandContext;
-
 import org.bukkit.command.CommandSender;
 
 public class TestCommand  {

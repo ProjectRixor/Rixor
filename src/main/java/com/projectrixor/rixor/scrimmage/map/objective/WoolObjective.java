@@ -1,17 +1,15 @@
 package com.projectrixor.rixor.scrimmage.map.objective;
 
-import lombok.Getter;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
-
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 
 public class WoolObjective extends TeamObjective {
 	
-	@Getter Location place;
-	@Getter DyeColor wool;
+	Location place;
+	DyeColor wool;
 	
 	public WoolObjective(Map map, MapTeam owner, String name, Location place, DyeColor wool) {
 		super(map, owner, name);
@@ -75,5 +73,12 @@ public class WoolObjective extends TeamObjective {
 		
 		return match;
 	}
-	
+
+	public Location getPlace(){
+		return this.place;
+	}
+
+	public DyeColor getWool(){
+		return this.wool;
+	}
 }

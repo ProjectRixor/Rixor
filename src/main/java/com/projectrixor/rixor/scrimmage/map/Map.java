@@ -1,11 +1,5 @@
 package com.projectrixor.rixor.scrimmage.map;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.ServerLog;
 import com.projectrixor.rixor.scrimmage.map.extras.Contributor;
@@ -38,7 +32,11 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.dom4j.Attribute;
 import org.dom4j.Element;
 
-import lombok.Getter;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Map {
 	
@@ -50,36 +48,34 @@ public class Map {
 	 * Or I could just supply the RotationSlot in the map object? I guess that could work ^.^
 	 */
 	
-	@Getter MapLoader loader;
-	@Getter
+	MapLoader loader;
 	RotationSlot slot;
-	@Getter World world;
-	@Getter File folder;
+	World world;
+	File folder;
 	
-	@Getter String name;
-	@Getter String version;
-	@Getter String objective;
-	@Getter List<String> rules;
-	@Getter List<Contributor> authors;
-	@Getter List<Contributor> contributors;
-	@Getter List<ItemKit> kits;
-	@Getter List<ItemStack> itemRemove = new ArrayList<ItemStack>();
-	@Getter ItemStack killReward;
-	@Getter TNTSettings tntsettings = new TNTSettings();
-	@Getter List<MapTeam> teams = new ArrayList<MapTeam>();
-	@Getter MapTeam observers;
+	String name;
+	String version;
+	String objective;
+	List<String> rules;
+	List<Contributor> authors;
+	List<Contributor> contributors;
+	List<ItemKit> kits;
+	List<ItemStack> itemRemove = new ArrayList<ItemStack>();
+	ItemStack killReward;
+	TNTSettings tntsettings = new TNTSettings();
+	List<MapTeam> teams = new ArrayList<MapTeam>();
+	MapTeam observers;
 	
-	@Getter int maxbuildheight;
-	@Getter List<RegionGroup> regions;
-	@Getter List<Filter> filters;
+	int maxbuildheight;
+	List<RegionGroup> regions;
+	List<Filter> filters;
 	
-	@Getter
 	SidebarType sidebar = SidebarType.OBJECTIVES;
-	@Getter Scoreboard board;
-	@Getter Objective boardObjective;
+	Scoreboard board;
+	Objective boardObjective;
 	
-	@Getter int timeLimit;
-	@Getter int scoreLimit;
+	int timeLimit;
+	int scoreLimit;
 	
 	public Map(MapLoader loader, RotationSlot slot, String name, String version, String objective, List<String> rules,
 			List<Contributor> authors, List<Contributor> contributors, List<MapTeam> teams, MapTeam observers, int maxbuildheight, SidebarType sidebar, int timeLimit, int scoreLimit) {
@@ -576,5 +572,100 @@ public class Map {
 		
 		return teams;
 	}
-	
+
+	public MapLoader getLoader(){
+		return this.loader;
+	}
+
+	public RotationSlot getSlot(){
+		return this.slot;
+	}
+
+	public World getWorld(){
+		return this.world;
+	}
+
+	public File getFolder(){
+		return this.folder;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public String getVersion(){
+		return this.version;
+	}
+
+	public String getObjective(){
+		return this.objective;
+	}
+
+	public List<String> getRules(){
+		return this.rules;
+	}
+
+	public List<Contributor> getAuthors(){
+		return this.authors;
+	}
+
+	public List<Contributor> getContributors(){
+		return this.contributors;
+	}
+
+	public List<ItemKit> getKits(){
+		return this.kits;
+	}
+
+	public List<ItemStack> getItemRemove(){
+		return this.itemRemove;
+	}
+
+	public ItemStack getKillReward(){
+		return this.killReward;
+	}
+
+	public TNTSettings getTntsettings(){
+		return this.tntsettings;
+	}
+
+	public List<MapTeam> getTeams(){
+		return this.teams;
+	}
+
+	public MapTeam getObservers(){
+		return this.observers;
+	}
+
+	public int getMaxbuildheight(){
+		return this.maxbuildheight;
+	}
+
+	public List<RegionGroup> getRegions(){
+		return this.regions;
+	}
+
+	public List<Filter> getFilters(){
+		return this.filters;
+	}
+
+	public SidebarType getSidebar(){
+		return this.sidebar;
+	}
+
+	public Scoreboard getBoard(){
+		return this.board;
+	}
+
+	public Objective getBoardObjective(){
+		return this.boardObjective;
+	}
+
+	public int getTimeLimit(){
+		return this.timeLimit;
+	}
+
+	public int getScoreLimit(){
+		return this.scoreLimit;
+	}
 }

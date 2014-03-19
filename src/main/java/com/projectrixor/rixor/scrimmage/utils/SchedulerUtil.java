@@ -3,13 +3,10 @@ package com.projectrixor.rixor.scrimmage.utils;
 import com.projectrixor.rixor.scrimmage.Rixor;
 import org.bukkit.scheduler.BukkitTask;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class SchedulerUtil {
 	
-	private @Getter @Setter int id;
-	private @Getter BukkitTask task;
+	private int id;
+	private BukkitTask task;
 	
 	public void runnable() {
 		
@@ -98,5 +95,16 @@ public class SchedulerUtil {
 			
 		});
 	}
-	
+
+	public int getId(){
+		return this.id;
+	}
+
+	public BukkitTask getTask(){
+		return this.task;
+	}
+
+	public void setId(int id){
+		this.id=id;
+	}
 }

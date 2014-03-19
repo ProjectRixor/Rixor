@@ -2,10 +2,9 @@ package com.projectrixor.rixor.scrimmage.player.commands;
 
 import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.player.Client;
+import com.projectrixor.rixor.scrimmage.player.PlayerChatEvent;
 import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
-import com.projectrixor.rixor.scrimmage.player.PlayerChatEvent;
-
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 

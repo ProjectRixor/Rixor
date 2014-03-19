@@ -1,13 +1,11 @@
 package com.projectrixor.rixor.scrimmage.map.filter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import org.bukkit.Material;
 import org.dom4j.Element;
 
-import lombok.Getter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Filter {
 	
@@ -28,15 +26,15 @@ public class Filter {
 	 * Maybe check for not first, then after determining the outcode from inside, if(not) o = o != o or something like that? xD o = !o might work.
 	 */
 	
-	@Getter String name;
-	@Getter List<FilterType> parents;
-	@Getter String message;
+	String name;
+	List<FilterType> parents;
+	String message;
 	
-	@Getter List<MapTeam> allowTeams; // teams must be initialised before these lists can be filled.
-	@Getter List<MapTeam> denyTeams;
+	List<MapTeam> allowTeams; // teams must be initialised before these lists can be filled.
+	List<MapTeam> denyTeams;
 
-	@Getter List<Material> allowBlocks; // only really allowing/denying materials...
-	@Getter List<Material> denyBlocks;
+	List<Material> allowBlocks; // only really allowing/denying materials...
+	List<Material> denyBlocks;
 	
 	private Filter(String name, List<FilterType> parents, List<MapTeam> allowTeams,
 			List<MapTeam> denyTeams, List<Material> allowBlocks, List<Material> denyBlocks) {
@@ -92,5 +90,32 @@ public class Filter {
 	public Filter clone() {
 		return new Filter(name, parents, allowTeams, denyTeams, allowBlocks, denyBlocks);
 	}
-	
+
+	public String getName(){
+		return this.name;
+	}
+
+	public List<FilterType> getParents(){
+		return this.parents;
+	}
+
+	public String getMessage(){
+		return this.message;
+	}
+
+	public List<MapTeam> getAllowTeams(){
+		return this.allowTeams;
+	}
+
+	public List<MapTeam> getDenyTeams(){
+		return this.denyTeams;
+	}
+
+	public List<Material> getAllowBlocks(){
+		return this.allowBlocks;
+	}
+
+	public List<Material> getDenyBlocks(){
+		return this.denyBlocks;
+	}
 }

@@ -1,14 +1,12 @@
 package com.projectrixor.rixor.scrimmage.map.region;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import lombok.Getter;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
-
 import org.bukkit.Location;
 import org.dom4j.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegionGroup {
 	
@@ -19,10 +17,10 @@ public class RegionGroup {
 	 * I'll start by setting up Union groups, then I'll move on to the next type of region.
 	 */
 	
-	@Getter String name;
-	@Getter Element group;
-	@Getter RegionGroupType type;
-	@Getter List<Location> locations;
+	String name;
+	Element group;
+	RegionGroupType type;
+	List<Location> locations;
 	
 	private RegionGroup(String name, Element group, RegionGroupType type, List<Location> locations) {
 		this.name = name;
@@ -169,5 +167,20 @@ public class RegionGroup {
 	public RegionGroup clone() {
 		return new RegionGroup(getName(), getGroup(), getType(), getLocations());
 	}
-	
+
+	public String getName(){
+		return this.name;
+	}
+
+	public Element getGroup(){
+		return this.group;
+	}
+
+	public RegionGroupType getType(){
+		return this.type;
+	}
+
+	public List<Location> getLocations(){
+		return this.locations;
+	}
 }

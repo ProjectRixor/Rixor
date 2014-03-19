@@ -1,23 +1,21 @@
 package com.projectrixor.rixor.scrimmage.map.objective;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
+import com.projectrixor.rixor.scrimmage.map.Map;
+import com.projectrixor.rixor.scrimmage.map.MapTeam;
+import com.projectrixor.rixor.scrimmage.player.Client;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.player.Client;
-import lombok.Getter;
-import com.projectrixor.rixor.scrimmage.Rixor;
-import com.projectrixor.rixor.scrimmage.map.Map;
-import com.projectrixor.rixor.scrimmage.map.MapTeam;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-
 public class MonumentObjective extends TeamObjective {
 	
-	@Getter List<MonumentBlock> blocks;
-	@Getter int percentage;
+	List<MonumentBlock> blocks;
+	int percentage;
 	
 	public MonumentObjective(Map map, MapTeam owner, String name, List<MonumentBlock> blocks, int percentage) {
 		super(map, owner, name);
@@ -114,5 +112,12 @@ public class MonumentObjective extends TeamObjective {
 		
 		return blocks.size() == broken.size();
 	}
-	
+
+	public List<MonumentBlock> getBlocks(){
+		return this.blocks;
+	}
+
+	public int getPercentage(){
+		return this.percentage;
+	}
 }

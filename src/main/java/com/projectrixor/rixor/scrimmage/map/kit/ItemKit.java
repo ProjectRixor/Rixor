@@ -1,20 +1,18 @@
 package com.projectrixor.rixor.scrimmage.map.kit;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.player.Client;
 import org.bukkit.potion.PotionEffect;
 
-import lombok.Getter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemKit {
 	
-	@Getter List<ItemKit> parents;
+	List<ItemKit> parents;
 	
-	@Getter String name;
-	@Getter List<ItemSlot> items;
-	@Getter List<PotionEffect> effects;
+	String name;
+	List<ItemSlot> items;
+	List<PotionEffect> effects;
 	
 	public ItemKit(String name, List<ItemSlot> items, List<ItemKit> parents) {
 		this(name, items, parents, new ArrayList<PotionEffect>());
@@ -37,5 +35,20 @@ public class ItemKit {
 		for(PotionEffect effect : effects)
 			client.getPlayer().addPotionEffect(effect);
 	}
-	
+
+	public List<ItemKit> getParents(){
+		return this.parents;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public List<ItemSlot> getItems(){
+		return this.items;
+	}
+
+	public List<PotionEffect> getEffects(){
+		return this.effects;
+	}
 }

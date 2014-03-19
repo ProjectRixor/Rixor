@@ -1,18 +1,16 @@
 package com.projectrixor.rixor.scrimmage.map.objective;
 
+import com.projectrixor.rixor.scrimmage.player.Client;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.player.Client;
-import lombok.Getter;
-
 public class MonumentCalculation {
 	
-	@Getter MonumentObjective monument;
+	MonumentObjective monument;
 	
-	@Getter
 	Client client;
-	private @Getter List<MonumentBlock> destroyed;
+	private List<MonumentBlock> destroyed;
 	
 	private MonumentCalculation(Client client, MonumentObjective monument) {
 		this.monument = monument;
@@ -36,5 +34,16 @@ public class MonumentCalculation {
 	public static MonumentCalculation getCalculation(Client client, MonumentObjective monument) {
 		return new MonumentCalculation(client, monument);
 	}
-	
+
+	public MonumentObjective getMonument(){
+		return this.monument;
+	}
+
+	public Client getClient(){
+		return this.client;
+	}
+
+	public List<MonumentBlock> getDestroyed(){
+		return this.destroyed;
+	}
 }

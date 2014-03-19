@@ -1,11 +1,10 @@
 package com.projectrixor.rixor.scrimmage.tracker;
 
 import com.projectrixor.rixor.scrimmage.Rixor;
-import com.projectrixor.rixor.scrimmage.match.events.PlayerDiedEvent;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
+import com.projectrixor.rixor.scrimmage.match.events.PlayerDiedEvent;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.utils.SchedulerUtil;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,7 +25,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockVector;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Vector;
 
 public class GravityKillTracker implements Listener {
 

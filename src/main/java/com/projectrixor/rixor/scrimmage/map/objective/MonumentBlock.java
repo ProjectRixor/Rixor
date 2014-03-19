@@ -3,14 +3,10 @@ package com.projectrixor.rixor.scrimmage.map.objective;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import org.bukkit.Location;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class MonumentBlock {
 	
-	@Getter @Setter
 	Client breaker;
-	@Getter Location location;
+	Location location;
 	
 	public MonumentBlock(Location location) {
 		this.location = location;
@@ -19,5 +15,16 @@ public class MonumentBlock {
 	public boolean isBroken() {
 		return breaker != null;
 	}
-	
+
+	public Client getBreaker(){
+		return this.breaker;
+	}
+
+	public Location getLocation(){
+		return this.location;
+	}
+
+	public void setBreaker(Client breaker){
+		this.breaker=breaker;
+	}
 }

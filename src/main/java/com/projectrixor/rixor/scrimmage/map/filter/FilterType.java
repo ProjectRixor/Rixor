@@ -1,7 +1,5 @@
 package com.projectrixor.rixor.scrimmage.map.filter;
 
-import lombok.Getter;
-
 public enum FilterType {
 	
 	ALLOW_PLAYERS(),
@@ -34,7 +32,7 @@ public enum FilterType {
 	ALLOW_ALL(new FilterType[]{ALLOW_PLAYERS, ALLOW_PLACE, ALLOW_BLOCKS, ALLOW_SPAWNS, ALLOW_ENTITIES, ALLOW_MOBS, ALLOW_INTERACT}),
 	DENY_ALL(new FilterType[]{DENY_PLAYERS, DENY_PLACE, DENY_BLOCKS, DENY_SPAWNS, DENY_ENTITIES, DENY_MOBS, DENY_INTERACT});
 	
-	@Getter FilterType[] children;
+	FilterType[] children;
 	
 	FilterType() {
 		this(new FilterType[0]);
@@ -51,5 +49,8 @@ public enum FilterType {
 		
 		return null;
 	}
-	
+
+	public FilterType[] getChildren(){
+		return this.children;
+	}
 }

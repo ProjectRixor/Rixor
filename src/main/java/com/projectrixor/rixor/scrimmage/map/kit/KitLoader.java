@@ -1,9 +1,7 @@
 package com.projectrixor.rixor.scrimmage.map.kit;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.ServerLog;
+import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
 import com.projectrixor.rixor.scrimmage.utils.ConversionUtil;
 import org.bukkit.Color;
@@ -16,13 +14,13 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.dom4j.Element;
 
-import lombok.Getter;
-import com.projectrixor.rixor.scrimmage.map.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KitLoader {
 	
-	@Getter Map map;
-	@Getter Element element;
+	Map map;
+	Element element;
 	
 	public KitLoader(Map map, Element element) {
 		this.map = map;
@@ -183,5 +181,12 @@ public class KitLoader {
 	public boolean isLeather(Material material) {
 		return material == Material.LEATHER_BOOTS || material == Material.LEATHER_LEGGINGS || material == Material.LEATHER_CHESTPLATE || material == Material.LEATHER_HELMET;
 	}
-	
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public Element getElement(){
+		return this.element;
+	}
 }

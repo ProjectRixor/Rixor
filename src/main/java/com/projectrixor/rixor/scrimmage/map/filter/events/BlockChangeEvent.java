@@ -1,9 +1,7 @@
 package com.projectrixor.rixor.scrimmage.map.filter.events;
 
-import com.projectrixor.rixor.scrimmage.player.Client;
-import lombok.Getter;
 import com.projectrixor.rixor.scrimmage.map.Map;
-
+import com.projectrixor.rixor.scrimmage.player.Client;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -13,12 +11,11 @@ public class BlockChangeEvent extends Event {
 	
     private static final HandlerList handlers = new HandlerList();
     
-    @Getter Event cause;
-    @Getter Map map;
-    @Getter
+    Event cause;
+    Map map;
     Client client;
-    @Getter BlockState oldState;
-    @Getter BlockState newState;
+    BlockState oldState;
+    BlockState newState;
  
     public BlockChangeEvent(Event cause, Map map, Client client, BlockState oldState, BlockState newState) {
     	this.cause = cause;
@@ -49,5 +46,24 @@ public class BlockChangeEvent extends Event {
     public static HandlerList getHandlerList() {
         return handlers;
     }
-	
+
+	public Event getCause(){
+		return this.cause;
+	}
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public Client getClient(){
+		return this.client;
+	}
+
+	public BlockState getOldState(){
+		return this.oldState;
+	}
+
+	public BlockState getNewState(){
+		return this.newState;
+	}
 }

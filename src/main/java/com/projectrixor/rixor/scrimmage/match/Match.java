@@ -1,11 +1,8 @@
 package com.projectrixor.rixor.scrimmage.match;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.Var;
+import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
 import com.projectrixor.rixor.scrimmage.map.objective.CoreObjective;
@@ -13,50 +10,46 @@ import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.rotation.RotationSlot;
 import com.projectrixor.rixor.scrimmage.utils.ConversionUtil;
 import com.projectrixor.rixor.scrimmage.utils.SchedulerUtil;
-
+import me.confuser.barapi.BarAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-
-import lombok.Getter;
-import lombok.Setter;
-import me.confuser.barapi.BarAPI;
-
-import com.projectrixor.rixor.scrimmage.map.Map;
 import org.bukkit.inventory.ItemStack;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Match {
 
-	@Getter Map map;
-	@Getter
+	Map map;
 	RotationSlot slot;
 
-	@Getter @Setter boolean hasEnded = false;
+	boolean hasEnded = false;
 
-	@Getter
 	SchedulerUtil schedule;
 	
-	@Getter SchedulerUtil startingTask;
-	@Getter @Setter int starting = 30;
-	@Getter @Setter boolean currentlyStarting = false;
+	SchedulerUtil startingTask;
+	int starting = 30;
+	boolean currentlyStarting = false;
 
-	@Getter SchedulerUtil restartingTask;
-	@Getter @Setter int restarting = 30;
-	@Getter @Setter boolean currentlyRestarting = false;
+	SchedulerUtil restartingTask;
+	int restarting = 30;
+	boolean currentlyRestarting = false;
 
-	@Getter SchedulerUtil timingTask;
-	@Getter int timing = 0;
-	@Getter double doubleTiming = 0;
-	@Getter @Setter int length;
-	@Getter @Setter boolean currentlyRunning = false;
+	SchedulerUtil timingTask;
+	int timing = 0;
+	double doubleTiming = 0;
+	int length;
+	boolean currentlyRunning = false;
 
-	@Getter SchedulerUtil cyclingTask;
-	@Getter @Setter int cycling = 30;
-	@Getter @Setter boolean loaded = false;
-	@Getter @Setter boolean currentlyCycling = false;
+	SchedulerUtil cyclingTask;
+	int cycling = 30;
+	boolean loaded = false;
+	boolean currentlyCycling = false;
 	
 	public Match(RotationSlot slot, int length) {
 		this.slot = slot;
@@ -524,5 +517,120 @@ public class Match {
 		cycling--;
 		return false;
 	}
-	
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public RotationSlot getSlot(){
+		return this.slot;
+	}
+
+	public boolean isHasEnded(){
+		return this.hasEnded;
+	}
+
+	public SchedulerUtil getSchedule(){
+		return this.schedule;
+	}
+
+	public SchedulerUtil getStartingTask(){
+		return this.startingTask;
+	}
+
+	public int getStarting(){
+		return this.starting;
+	}
+
+	public boolean isCurrentlyStarting(){
+		return this.currentlyStarting;
+	}
+
+	public SchedulerUtil getRestartingTask(){
+		return this.restartingTask;
+	}
+
+	public int getRestarting(){
+		return this.restarting;
+	}
+
+	public boolean isCurrentlyRestarting(){
+		return this.currentlyRestarting;
+	}
+
+	public SchedulerUtil getTimingTask(){
+		return this.timingTask;
+	}
+
+	public int getTiming(){
+		return this.timing;
+	}
+
+	public double getDoubleTiming(){
+		return this.doubleTiming;
+	}
+
+	public int getLength(){
+		return this.length;
+	}
+
+	public boolean isCurrentlyRunning(){
+		return this.currentlyRunning;
+	}
+
+	public SchedulerUtil getCyclingTask(){
+		return this.cyclingTask;
+	}
+
+	public int getCycling(){
+		return this.cycling;
+	}
+
+	public boolean isLoaded(){
+		return this.loaded;
+	}
+
+	public boolean isCurrentlyCycling(){
+		return this.currentlyCycling;
+	}
+
+	public void setHasEnded(boolean hasEnded){
+		this.hasEnded=hasEnded;
+	}
+
+	public void setStarting(int starting){
+		this.starting=starting;
+	}
+
+	public void setCurrentlyStarting(boolean currentlyStarting){
+		this.currentlyStarting=currentlyStarting;
+	}
+
+	public void setRestarting(int restarting){
+		this.restarting=restarting;
+	}
+
+	public void setCurrentlyRestarting(boolean currentlyRestarting){
+		this.currentlyRestarting=currentlyRestarting;
+	}
+
+	public void setLength(int length){
+		this.length=length;
+	}
+
+	public void setCurrentlyRunning(boolean currentlyRunning){
+		this.currentlyRunning=currentlyRunning;
+	}
+
+	public void setCycling(int cycling){
+		this.cycling=cycling;
+	}
+
+	public void setLoaded(boolean loaded){
+		this.loaded=loaded;
+	}
+
+	public void setCurrentlyCycling(boolean currentlyCycling){
+		this.currentlyCycling=currentlyCycling;
+	}
 }

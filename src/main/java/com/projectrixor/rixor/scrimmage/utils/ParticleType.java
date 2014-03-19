@@ -1,7 +1,5 @@
 package com.projectrixor.rixor.scrimmage.utils;
 
-import lombok.Getter;
-
 public enum ParticleType {
 
 	/**
@@ -51,8 +49,8 @@ public enum ParticleType {
 	SUSPEND("suspend", Environment.UKNOWN), // Can't figure out what this does
 	DEPTH_SUSPEND("depthSuspend", Environment.UKNOWN); // Can't figure out what this does
 
-	@Getter String packetName;
-	@Getter Environment environment;
+	String packetName;
+	Environment environment;
 
 	/**
 	 * Each particle effect has a packet name, and an environment for developers
@@ -64,7 +62,15 @@ public enum ParticleType {
 		this.packetName = packetName;
 		this.environment = environment;
 	}
-	
+
+	public String getPacketName(){
+		return this.packetName;
+	}
+
+	public Environment getEnvironment(){
+		return this.environment;
+	}
+
 	/**
 	 * 
 	 * Enum that dipicts in what envirnments a particle effect will be seen

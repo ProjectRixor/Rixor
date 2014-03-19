@@ -2,8 +2,6 @@ package com.projectrixor.rixor.scrimmage.map.objective;
 
 import org.bukkit.Material;
 
-import lombok.Getter;
-
 public enum CoreStage {
 
 	GLASS(20*60, Material.GLASS),
@@ -11,9 +9,9 @@ public enum CoreStage {
 	OBSIDIAN(GOLD, Material.OBSIDIAN),
 	OTHER();
 	
-	@Getter int time;
-	@Getter Material material;
-	@Getter CoreStage next;
+	int time;
+	Material material;
+	CoreStage next;
 	CoreStage() {
 		this(null, 0, null);
 	}
@@ -39,5 +37,16 @@ public enum CoreStage {
 	public boolean hasNext() {
 		return next != null;
 	}
-	
+
+	public int getTime(){
+		return this.time;
+	}
+
+	public Material getMaterial(){
+		return this.material;
+	}
+
+	public CoreStage getNext(){
+		return this.next;
+	}
 }
