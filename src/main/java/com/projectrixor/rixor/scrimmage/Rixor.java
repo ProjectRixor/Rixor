@@ -1,5 +1,6 @@
 package com.projectrixor.rixor.scrimmage;
 
+import com.projectrixor.rixor.scrimmage.commands.*;
 import com.projectrixor.rixor.scrimmage.event.PlayerEvents;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
@@ -8,14 +9,12 @@ import com.projectrixor.rixor.scrimmage.map.filter.FilterEvents;
 import com.projectrixor.rixor.scrimmage.map.objective.ObjectiveEvents;
 import com.projectrixor.rixor.scrimmage.map.region.Region;
 import com.projectrixor.rixor.scrimmage.player.Client;
-import com.projectrixor.rixor.scrimmage.player.commands.*;
 import com.projectrixor.rixor.scrimmage.rotation.Rotation;
 import com.projectrixor.rixor.scrimmage.tracker.GravityKillTracker;
 import com.projectrixor.rixor.scrimmage.tracker.PlayerBlockChecker;
 import com.projectrixor.rixor.scrimmage.tracker.TickTimer;
 import com.projectrixor.rixor.scrimmage.utils.FileUtil;
 import com.projectrixor.rixor.scrimmage.utils.JarUtils;
-import com.projectrixor.rixor.scrimmage.utils.ZipUtil;
 import com.sk89q.bukkit.util.CommandsManagerRegistration;
 import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.minecraft.util.commands.CommandPermissionsException;

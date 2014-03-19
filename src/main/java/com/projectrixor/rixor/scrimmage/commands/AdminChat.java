@@ -1,4 +1,4 @@
-package com.projectrixor.rixor.scrimmage.player.commands;
+package com.projectrixor.rixor.scrimmage.commands;
 
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.sk89q.minecraft.util.commands.Command;
