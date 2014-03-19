@@ -118,6 +118,10 @@ public class MapLoader {
 		Map.mapcommand.add(this.name);
 		ConversionUtil.commaList(Map.mapcommand);
 	}
+
+	public void parseName(){
+		this.name = doc.getRootElement().elementText("name");
+	}
 	
 	public Map getMap(RotationSlot slot) {
 		return new Map(this, slot, name, version, objective, rules, authors, contributors, teams, observers, maxbuildheight, sidebar, time, score);

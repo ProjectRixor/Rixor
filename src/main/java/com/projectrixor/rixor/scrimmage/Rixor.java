@@ -48,6 +48,7 @@ public class Rixor extends JavaPlugin {
 	Rixor instance;
 	static Rotation rotation;
 	static List<Map> mapsPlayed = new ArrayList<Map>();
+	static List<String> mapsLoaded = new ArrayList<>();
 	List<File> libs = new ArrayList<File>();
 	List<String> files = new ArrayList<String>();
 
@@ -198,15 +199,18 @@ public class Rixor extends JavaPlugin {
 		cmdRegister.register(RestartCommand.class);
 		cmdRegister.register(StartCommand.class);
 		cmdRegister.register(UpdateCommand.class);
+		cmdRegister.register(MapsCommand.class);
 
 	}
 
 	public void startup() {
 		team = getConfig().getString("team");
-		if(team == null)
+		if(team == null){
 			team = "public";
-		Rixor.getInstance().getConfig().set("team", team);
-		Rixor.getInstance().saveConfig();
+			Rixor.getInstance().getConfig().set("team", team);
+			Rixor.getInstance().saveConfig();
+		}
+
 		
 		// Load the maps from the local map repository (no github/download connections this time Harry...)
 		File[] files = getMapRoot().listFiles();
@@ -216,6 +220,8 @@ public class Rixor extends JavaPlugin {
 				for(File contains : file.listFiles())
 					if(!contains.isDirectory() && contains.getName().endsWith(".xml") && MapLoader.isLoadable(contains)) {
 						MapLoader loader = MapLoader.getLoader(contains);
+						loader.parseName();
+						mapsLoaded.add(loader.getName());
 						Rotation.addMap(loader);
 					}
 		
@@ -271,6 +277,10 @@ public class Rixor extends JavaPlugin {
 			}
 			
 		}.runTask(instance);
+	}
+
+	public static List<String> getMapsLoaded(){
+		return mapsLoaded;
 	}
 	
 	public void addClassPath(final URL url) throws IOException {
