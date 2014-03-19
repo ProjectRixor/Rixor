@@ -1,23 +1,21 @@
 package com.projectrixor.rixor.scrimmage;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.event.PlayerEvents;
+import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
+import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.filter.FilterEvents;
 import com.projectrixor.rixor.scrimmage.map.objective.ObjectiveEvents;
+import com.projectrixor.rixor.scrimmage.map.region.Region;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.player.commands.*;
+import com.projectrixor.rixor.scrimmage.rotation.Rotation;
 import com.projectrixor.rixor.scrimmage.tracker.GravityKillTracker;
 import com.projectrixor.rixor.scrimmage.tracker.PlayerBlockChecker;
 import com.projectrixor.rixor.scrimmage.tracker.TickTimer;
 import com.projectrixor.rixor.scrimmage.utils.FileUtil;
+import com.projectrixor.rixor.scrimmage.utils.JarUtils;
+import com.projectrixor.rixor.scrimmage.utils.ZipUtil;
 import com.sk89q.bukkit.util.CommandsManagerRegistration;
 import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.minecraft.util.commands.CommandPermissionsException;
@@ -36,38 +34,69 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import lombok.Getter;
-import lombok.Setter;
-import com.projectrixor.rixor.scrimmage.map.Map;
-import com.projectrixor.rixor.scrimmage.map.MapTeam;
-import com.projectrixor.rixor.scrimmage.map.region.Region;
-import com.projectrixor.rixor.scrimmage.rotation.Rotation;
-import com.projectrixor.rixor.scrimmage.utils.JarUtils;
-import com.projectrixor.rixor.scrimmage.utils.ZipUtil;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Rixor extends JavaPlugin {
 	
-	static @Getter
+	static
 	Rixor instance;
-	static @Getter @Setter Rotation rotation;
-	static @Getter List<Map> mapsPlayed = new ArrayList<Map>();
-	@Getter List<File> libs = new ArrayList<File>();
-	@Getter List<String> files = new ArrayList<String>();
+	static Rotation rotation;
+	static List<Map> mapsPlayed = new ArrayList<Map>();
+	List<File> libs = new ArrayList<File>();
+	List<String> files = new ArrayList<String>();
 
 	private TickTimer tickTimer;
-	@Getter public GravityKillTracker gkt;
+	public GravityKillTracker gkt;
 	
-	static @Getter String team;
-	static @Getter @Setter boolean open;
+	static String team;
+	static boolean open;
 	
-	private @Getter @Setter File rootDirectory;
-	private @Getter @Setter String mapDirectory;
+	private File rootDirectory;
+	private String mapDirectory;
 	
-	@Getter public static double MINIMUM_MOVEMENT = 0.125;
+	public static double MINIMUM_MOVEMENT = 0.125;
 
 	private CommandsManager<CommandSender> commands;
-	
+
+	public static Rixor getInstance(){
+		return Rixor.instance;
+	}
+
+	public static Rotation getRotation(){
+		return Rixor.rotation;
+	}
+
+	public static List<Map> getMapsPlayed(){
+		return Rixor.mapsPlayed;
+	}
+
+	public static String getTeam(){
+		return Rixor.team;
+	}
+
+	public static boolean isOpen(){
+		return Rixor.open;
+	}
+
+	public static double getMINIMUM_MOVEMENT(){
+		return Rixor.MINIMUM_MOVEMENT;
+	}
+
+	public static void setRotation(Rotation rotation){
+		Rixor.rotation=rotation;
+	}
+
+	public static void setOpen(boolean open){
+		Rixor.open=open;
+	}
+
 	public void onEnable() {
 		
 		reloadConfig();
@@ -314,5 +343,33 @@ public class Rixor extends JavaPlugin {
 	
 	public static Map getMap() {
 		return Rixor.getRotation().getSlot().getMap();
-	}	
+	}
+
+	public List<File> getLibs(){
+		return this.libs;
+	}
+
+	public List<String> getFiles(){
+		return this.files;
+	}
+
+	public GravityKillTracker getGkt(){
+		return this.gkt;
+	}
+
+	public File getRootDirectory(){
+		return this.rootDirectory;
+	}
+
+	public String getMapDirectory(){
+		return this.mapDirectory;
+	}
+
+	public void setRootDirectory(File rootDirectory){
+		this.rootDirectory=rootDirectory;
+	}
+
+	public void setMapDirectory(String mapDirectory){
+		this.mapDirectory=mapDirectory;
+	}
 }

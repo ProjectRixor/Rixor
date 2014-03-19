@@ -1,24 +1,18 @@
 package com.projectrixor.rixor.scrimmage.map;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.ServerLog;
 import com.projectrixor.rixor.scrimmage.map.objective.CoreObjective;
 import com.projectrixor.rixor.scrimmage.map.objective.CoreStage;
 import com.projectrixor.rixor.scrimmage.map.objective.MonumentBlock;
 import com.projectrixor.rixor.scrimmage.map.objective.MonumentObjective;
+import com.projectrixor.rixor.scrimmage.map.objective.TeamObjective;
 import com.projectrixor.rixor.scrimmage.map.objective.WoolObjective;
 import com.projectrixor.rixor.scrimmage.map.region.ConfiguredRegion;
 import com.projectrixor.rixor.scrimmage.map.region.Region;
 import com.projectrixor.rixor.scrimmage.map.region.RegionType;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.utils.ConversionUtil;
-import lombok.Getter;
-import lombok.Setter;
-import com.projectrixor.rixor.scrimmage.map.objective.TeamObjective;
-
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -32,6 +26,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 import org.bukkit.scoreboard.Team;
 import org.dom4j.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapTeam {
 	
@@ -48,17 +45,17 @@ public class MapTeam {
 		return null;
 	}
 	
-	@Getter Map map;
-	@Getter Team team;
+	Map map;
+	Team team;
 	
-	@Getter String name;
-	@Getter ChatColor color;
-	@Getter int cap;
-	@Getter @Setter int score = 0;
+	String name;
+	ChatColor color;
+	int cap;
+	int score = 0;
 	
-	@Getter String displayName;
-	@Getter List<MapTeamSpawn> spawns;
-	@Getter List<TeamObjective> objectives;
+	String displayName;
+	List<MapTeamSpawn> spawns;
+	List<TeamObjective> objectives;
 	
 	private MapTeam(Map map, String name, ChatColor color, int cap, List<MapTeamSpawn> spawns) {
 		this.map = map;
@@ -596,5 +593,44 @@ public class MapTeam {
 		
 		return null;
 	}
-	
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public Team getTeam(){
+		return this.team;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public ChatColor getColor(){
+		return this.color;
+	}
+
+	public int getCap(){
+		return this.cap;
+	}
+
+	public int getScore(){
+		return this.score;
+	}
+
+	public String getDisplayName(){
+		return this.displayName;
+	}
+
+	public List<MapTeamSpawn> getSpawns(){
+		return this.spawns;
+	}
+
+	public List<TeamObjective> getObjectives(){
+		return this.objectives;
+	}
+
+	public void setScore(int score){
+		this.score=score;
+	}
 }

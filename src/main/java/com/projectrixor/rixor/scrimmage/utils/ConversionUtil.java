@@ -1,15 +1,14 @@
 package com.projectrixor.rixor.scrimmage.utils;
 
-import java.awt.Color;
-import java.util.List;
-
+import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.potion.PotionEffectType;
 
-import com.projectrixor.rixor.scrimmage.map.MapTeam;
+import java.awt.*;
+import java.util.List;
 
 public class ConversionUtil {
 	

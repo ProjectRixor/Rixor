@@ -3,12 +3,10 @@ package com.projectrixor.rixor.scrimmage.map.kit;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import org.bukkit.inventory.ItemStack;
 
-import lombok.Getter;
-
 public class ItemSlot {
 	
-	@Getter int slot;
-	@Getter ItemStack item;
+	int slot;
+	ItemStack item;
 	
 	public ItemSlot(int slot, ItemStack item) {
 		this.slot = slot;
@@ -46,5 +44,12 @@ public class ItemSlot {
 		
 		return false;
 	}
-	
+
+	public int getSlot(){
+		return this.slot;
+	}
+
+	public ItemStack getItem(){
+		return this.item;
+	}
 }

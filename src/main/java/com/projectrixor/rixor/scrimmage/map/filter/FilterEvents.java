@@ -1,11 +1,8 @@
 package com.projectrixor.rixor.scrimmage.map.filter;
 
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.Rixor;
-import com.projectrixor.rixor.scrimmage.map.filter.events.BlockChangeEvent;
 import com.projectrixor.rixor.scrimmage.map.Map;
-
+import com.projectrixor.rixor.scrimmage.map.filter.events.BlockChangeEvent;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,16 +14,7 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.BlockFadeEvent;
-import org.bukkit.event.block.BlockFormEvent;
-import org.bukkit.event.block.BlockFromToEvent;
-import org.bukkit.event.block.BlockPistonExtendEvent;
-import org.bukkit.event.block.BlockPistonRetractEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.block.BlockSpreadEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -37,6 +25,8 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.material.MaterialData;
+
+import java.util.List;
 
 public class FilterEvents implements Listener {
 	

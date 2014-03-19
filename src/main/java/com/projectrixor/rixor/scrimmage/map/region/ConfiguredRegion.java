@@ -1,18 +1,16 @@
 package com.projectrixor.rixor.scrimmage.map.region;
 
-import java.util.List;
-
 import org.bukkit.Location;
 import org.dom4j.Element;
 
-import lombok.Getter;
+import java.util.List;
 
 public class ConfiguredRegion {
 	
-	@Getter Element element;
+	Element element;
 	
-	@Getter String name;
-	@Getter List<Location> locations;
+	String name;
+	List<Location> locations;
 	
 	public ConfiguredRegion(List<Location> locations, Element element) {
 		this(null, locations, element);
@@ -23,5 +21,16 @@ public class ConfiguredRegion {
 		this.name = name;
 		this.locations = locations;
 	}
-	
+
+	public Element getElement(){
+		return this.element;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public List<Location> getLocations(){
+		return this.locations;
+	}
 }

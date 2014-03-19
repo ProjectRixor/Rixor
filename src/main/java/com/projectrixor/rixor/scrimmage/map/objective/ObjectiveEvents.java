@@ -1,16 +1,13 @@
 package com.projectrixor.rixor.scrimmage.map.objective;
 
-import java.util.List;
-
 import com.projectrixor.rixor.scrimmage.Rixor;
-import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
+import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
 import com.projectrixor.rixor.scrimmage.map.filter.events.BlockChangeEvent;
 import com.projectrixor.rixor.scrimmage.match.events.PlayerDiedEvent;
 import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.utils.FireworkUtil;
-
 import org.bukkit.ChatColor;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Builder;
@@ -25,6 +22,8 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+
+import java.util.List;
 
 public class ObjectiveEvents implements Listener {
 

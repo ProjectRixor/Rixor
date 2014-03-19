@@ -2,18 +2,17 @@ package com.projectrixor.rixor.scrimmage.event;
 
 import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.ServerLog;
-import com.projectrixor.rixor.scrimmage.player.Client;
-import com.projectrixor.rixor.scrimmage.player.StatTracker;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import com.projectrixor.rixor.scrimmage.map.MapTeamSpawn;
 import com.projectrixor.rixor.scrimmage.match.Match;
+import com.projectrixor.rixor.scrimmage.player.Client;
 import com.projectrixor.rixor.scrimmage.player.PlayerChatEvent;
+import com.projectrixor.rixor.scrimmage.player.StatTracker;
 import com.projectrixor.rixor.scrimmage.utils.Characters;
 import com.projectrixor.rixor.scrimmage.utils.InvUtil;
 import com.projectrixor.rixor.scrimmage.utils.PickerUtil;
 import com.projectrixor.rixor.scrimmage.utils.UpdateUtil;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -218,9 +217,9 @@ public class PlayerEvents implements Listener {
 		
 		String team = "";
 		if(!Rixor.isPublic())
-			team = ChatColor.GRAY + "Server Owner: (" + ChatColor.GOLD + Rixor.getTeam() + ChatColor.GRAY + ")";
+			//team = ChatColor.GRAY + "Server Owner: (" + ChatColor.GOLD + Rixor.getTeam() + ChatColor.GRAY + ")";
 		
-		event.setMotd(color + " " + Characters.raquo + " " + ChatColor.AQUA + map.getName() + color + " " + Characters.laquo + " " + "\n" + team);
+		event.setMotd(color + " " + Characters.raquo + " " + ChatColor.AQUA + map.getName() + color + " " + Characters.laquo + " " + "\n");
 	}
 	
 	@EventHandler

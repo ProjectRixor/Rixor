@@ -1,19 +1,17 @@
 package com.projectrixor.rixor.scrimmage.rotation;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
+import com.projectrixor.rixor.scrimmage.map.MapLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.projectrixor.rixor.scrimmage.Rixor;
-import com.projectrixor.rixor.scrimmage.map.MapLoader;
-import lombok.Getter;
-import lombok.Setter;
-
 public class Rotation {
 	
-	static @Getter List<MapLoader> loaded = new ArrayList<MapLoader>();
-	@Getter List<RotationSlot> rotation = new ArrayList<RotationSlot>();
+	static List<MapLoader> loaded = new ArrayList<MapLoader>();
+	List<RotationSlot> rotation = new ArrayList<RotationSlot>();
 	
-	@Getter @Setter RotationSlot slot;
+	RotationSlot slot;
 	
 	public Rotation() {
 		List<MapLoader> maps = new ArrayList<MapLoader>();
@@ -36,7 +34,11 @@ public class Rotation {
 		//Rixor.getInstance().getConfig().set("rotation", getRotationString());
 		//Rixor.getInstance().saveConfig();
 	}
-	
+
+	public static List<MapLoader> getLoaded(){
+		return Rotation.loaded;
+	}
+
 	public void start() {
 		RotationSlot slot = rotation.get(0);
 		this.slot = slot;
@@ -59,12 +61,12 @@ public class Rotation {
 	public void setNext(RotationSlot slot) {
 		int current = getLocation(slot);
 		
-		List<RotationSlot> pre = rotation.subList(0, current - 1);
+		List<RotationSlot> pre = rotation.subList(0, current);
 		List<RotationSlot> aft = new ArrayList<RotationSlot>();
 		try {
-			aft = rotation.subList(current + 1, rotation.size() - 1);
+			aft = rotation.subList(current + 1, rotation.size());
 		} catch(Exception e) {
-
+			 Rixor.getInstance().getLogger().severe(e.getMessage());
 		}
 		
 		List<RotationSlot> rotation = new ArrayList<RotationSlot>();
@@ -119,5 +121,16 @@ public class Rotation {
 		
 		return null;
 	}
-	
+
+	public List<RotationSlot> getRotation(){
+		return this.rotation;
+	}
+
+	public RotationSlot getSlot(){
+		return this.slot;
+	}
+
+	public void setSlot(RotationSlot slot){
+		this.slot=slot;
+	}
 }

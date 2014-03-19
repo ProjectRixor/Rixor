@@ -1,20 +1,18 @@
 package com.projectrixor.rixor.scrimmage.map.objective;
 
-import java.util.List;
-
-import com.projectrixor.rixor.scrimmage.utils.RegionUtil;
-import lombok.Getter;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapTeam;
-
+import com.projectrixor.rixor.scrimmage.utils.RegionUtil;
 import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.List;
+
 public class CoreObjective extends TeamObjective {
 	
-	@Getter List<Location> blocks;
-	@Getter int leak;
-	@Getter CoreStage stage;
+	List<Location> blocks;
+	int leak;
+	CoreStage stage;
 	
 	public CoreObjective(Map map, MapTeam owner, String name, List<Location> blocks, int leak, CoreStage stage) {
 		super(map, owner, name);
@@ -61,5 +59,16 @@ public class CoreObjective extends TeamObjective {
 			
 		};
 	}
-	
+
+	public List<Location> getBlocks(){
+		return this.blocks;
+	}
+
+	public int getLeak(){
+		return this.leak;
+	}
+
+	public CoreStage getStage(){
+		return this.stage;
+	}
 }

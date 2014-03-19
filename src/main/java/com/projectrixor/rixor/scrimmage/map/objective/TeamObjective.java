@@ -7,21 +7,17 @@ import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
 import com.projectrixor.rixor.scrimmage.utils.Characters;
 import org.bukkit.ChatColor;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class TeamObjective {
 	
-	@Getter
 	Map map;
 	
-	@Getter String name;
-	@Getter MapTeam team;
-	@Getter boolean complete;
-	@Getter boolean destroyed;
-	@Getter int used;
+	String name;
+	MapTeam team;
+	boolean complete;
+	boolean destroyed;
+	int used;
 	
-	@Getter @Setter int touched;
+	int touched;
 	
 	public TeamObjective(Map map, MapTeam owner, String name) {
 		this.name = name;
@@ -98,5 +94,36 @@ public class TeamObjective {
 		whoCompleted.getMap().reloadSidebar(true, SidebarType.OBJECTIVES);
 		checkForWinner(whoCompleted);
 	}
-	
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public MapTeam getTeam(){
+		return this.team;
+	}
+
+	public boolean isComplete(){
+		return this.complete;
+	}
+
+	public boolean isDestroyed(){
+		return this.destroyed;
+	}
+
+	public int getUsed(){
+		return this.used;
+	}
+
+	public int getTouched(){
+		return this.touched;
+	}
+
+	public void setTouched(int touched){
+		this.touched=touched;
+	}
 }

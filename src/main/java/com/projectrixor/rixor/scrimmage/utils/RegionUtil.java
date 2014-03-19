@@ -1,12 +1,12 @@
 package com.projectrixor.rixor.scrimmage.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegionUtil {
 	

@@ -1,9 +1,8 @@
 package com.projectrixor.rixor.scrimmage.utils;
 
-import java.util.Arrays;
-
-import lombok.Getter;
-
+import com.projectrixor.rixor.scrimmage.Rixor;
+import com.projectrixor.rixor.scrimmage.map.Map;
+import com.projectrixor.rixor.scrimmage.map.MapTeam;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -13,12 +12,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 
-import com.projectrixor.rixor.scrimmage.map.MapTeam;
-import com.projectrixor.rixor.scrimmage.Rixor;
-import com.projectrixor.rixor.scrimmage.map.Map;
+import java.util.Arrays;
 
 public class PickerUtil {
-	@Getter Map map;
+	Map map;
     public static Inventory obsInvPreview(String string) {
     	final Inventory preview = Bukkit.getServer().createInventory(null, 27, ChatColor.RED + string);
     	
@@ -86,5 +83,9 @@ public class PickerUtil {
     		}
     	}
     	return preview;
-    }	
+    }
+
+	public Map getMap(){
+		return this.map;
+	}
 }

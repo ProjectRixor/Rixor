@@ -3,7 +3,11 @@ package com.projectrixor.rixor.scrimmage.utils;
 
 import com.projectrixor.rixor.scrimmage.Rixor;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;

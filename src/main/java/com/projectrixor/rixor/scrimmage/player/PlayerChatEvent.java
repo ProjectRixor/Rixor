@@ -1,19 +1,16 @@
 package com.projectrixor.rixor.scrimmage.player;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class PlayerChatEvent extends Event {
 	
 	private static final HandlerList handlers = new HandlerList();
-    @Getter @Setter boolean cancelled = false;
+    boolean cancelled = false;
     
-    @Getter Client client;
-    @Getter String message;
-    @Getter boolean team;
+    Client client;
+    String message;
+    boolean team;
 
 	public PlayerChatEvent(Client client, String message, boolean team) {
 		this.client = client;
@@ -28,5 +25,24 @@ public class PlayerChatEvent extends Event {
     public static HandlerList getHandlerList() {
         return handlers;
     }
-	
+
+	public boolean isCancelled(){
+		return this.cancelled;
+	}
+
+	public Client getClient(){
+		return this.client;
+	}
+
+	public String getMessage(){
+		return this.message;
+	}
+
+	public boolean isTeam(){
+		return this.team;
+	}
+
+	public void setCancelled(boolean cancelled){
+		this.cancelled=cancelled;
+	}
 }

@@ -5,7 +5,6 @@ import com.projectrixor.rixor.scrimmage.Var;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.extras.Contributor;
 import com.projectrixor.rixor.scrimmage.rotation.Rotation;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

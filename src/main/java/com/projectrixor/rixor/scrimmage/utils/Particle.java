@@ -1,28 +1,26 @@
 package com.projectrixor.rixor.scrimmage.utils;
 
 /*import java.lang.reflect.Field;*/
-import java.util.ArrayList;
-import java.util.List;
 
 import com.projectrixor.rixor.scrimmage.player.Client;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Particle {
 	
-	@Getter String packetName;
-	@Getter ParticleType type;
-	@Getter @Setter Location location;
+	String packetName;
+	ParticleType type;
+	Location location;
 	
-	@Getter int id;
-	@Getter int data;
+	int id;
+	int data;
 
-	@Getter @Setter int speed;	
-	@Getter @Setter int count;
+	int speed;
+	int count;
 	
 	public Particle(ParticleType type, Location location, int speed, int count) {
 		this.type = type;
@@ -59,8 +57,48 @@ public class Particle {
     				clients.add(Client.getClient((Player) entity));
 		return false;
 	}
-	
-	
+
+	public String getPacketName(){
+		return this.packetName;
+	}
+
+	public ParticleType getType(){
+		return this.type;
+	}
+
+	public Location getLocation(){
+		return this.location;
+	}
+
+	public int getId(){
+		return this.id;
+	}
+
+	public int getData(){
+		return this.data;
+	}
+
+	public int getSpeed(){
+		return this.speed;
+	}
+
+	public int getCount(){
+		return this.count;
+	}
+
+	public void setLocation(Location location){
+		this.location=location;
+	}
+
+	public void setSpeed(int speed){
+		this.speed=speed;
+	}
+
+	public void setCount(int count){
+		this.count=count;
+	}
+
+
 	/**
 	 * Reflection to set the values of the packet
 	 * @param instance

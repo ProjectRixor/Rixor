@@ -1,24 +1,22 @@
 package com.projectrixor.rixor.scrimmage.map;
 
+import com.projectrixor.rixor.scrimmage.Rixor;
+import com.projectrixor.rixor.scrimmage.map.kit.ItemKit;
+import com.projectrixor.rixor.scrimmage.map.region.ConfiguredRegion;
+import org.bukkit.Location;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.projectrixor.rixor.scrimmage.Rixor;
-import com.projectrixor.rixor.scrimmage.map.region.ConfiguredRegion;
-import lombok.Getter;
-import com.projectrixor.rixor.scrimmage.map.kit.ItemKit;
-
-import org.bukkit.Location;
 
 public class MapTeamSpawn {
 	
 	public static float DEFAULT_YAW_VALUE = 0;
 	public static float DEFAULT_PITCH_VALUE = 0;
 	
-	@Getter Map map;
+	Map map;
 	
-	@Getter List<Location> possibles = new ArrayList<Location>();
-	@Getter String kitName;
+	List<Location> possibles = new ArrayList<Location>();
+	String kitName;
 	
 	public MapTeamSpawn(Map map, List<Location> possibles, String kitName) {
 		this.map = map;
@@ -52,5 +50,16 @@ public class MapTeamSpawn {
 	public MapTeamSpawn clone() {
 		return new MapTeamSpawn(getMap(), getPossibles(), getKitName());
 	}
-	
+
+	public Map getMap(){
+		return this.map;
+	}
+
+	public List<Location> getPossibles(){
+		return this.possibles;
+	}
+
+	public String getKitName(){
+		return this.kitName;
+	}
 }
