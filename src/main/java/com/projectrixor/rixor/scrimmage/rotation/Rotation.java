@@ -65,8 +65,8 @@ public class Rotation {
 		List<RotationSlot> rotation = getRotation();
 
 		rotation.add(current - rotation.size() + 1, slot);
-		rotation.remove(current - 3);
-		this.rotation = rotation;
+		rotation.remove(current-3);
+			this.rotation = rotation;
 	}
 	
 	public RotationSlot getSlot(int slot) throws IndexOutOfBoundsException {

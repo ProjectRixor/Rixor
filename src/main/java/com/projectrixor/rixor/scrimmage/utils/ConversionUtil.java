@@ -100,6 +100,51 @@ public class ConversionUtil {
 		
 		return null;
 	}
+
+	public static ChatColor convertWoolNameToChatColor(String woolName){
+		if (woolName.equalsIgnoreCase("lime wool")){
+			return ChatColor.GREEN;
+		}
+		else if (woolName.equalsIgnoreCase("purple wool")) {
+			return ChatColor.DARK_PURPLE;
+		}
+		else if (woolName.equalsIgnoreCase("yellow wool")) {
+			return ChatColor.YELLOW;
+		}
+		else if (woolName.equalsIgnoreCase("orange wool")) {
+			return ChatColor.YELLOW;
+		}
+		else if (woolName.equalsIgnoreCase("magenta wool")) {
+			return ChatColor.LIGHT_PURPLE;
+		}
+		else if (woolName.equalsIgnoreCase("light blue wool")) {
+			return ChatColor.AQUA;
+		}
+		else if (woolName.equalsIgnoreCase("pink wool")) {
+			return ChatColor.LIGHT_PURPLE;
+		}
+		else if (woolName.equalsIgnoreCase("black wool")) {
+			return ChatColor.BLACK;
+		}
+		else if (woolName.equalsIgnoreCase("blue wool")) {
+			return ChatColor.BLUE;
+		}
+		else if (woolName.equalsIgnoreCase("white wool") || woolName.equalsIgnoreCase("wool")) {
+			return ChatColor.WHITE;
+		}
+		else if (woolName.equalsIgnoreCase("gray wool")) {
+			return ChatColor.GRAY;
+		}
+		else if (woolName.equalsIgnoreCase("brown wool")) {
+			return ChatColor.GRAY;
+		}
+		else if (woolName.equalsIgnoreCase("red wool")) {
+			return ChatColor.RED;
+		}
+		else{
+			return ChatColor.GRAY;
+		}
+	}
 	
 	public static Color convertHexStringToColor(String colorStr) {
 	    return new Color(

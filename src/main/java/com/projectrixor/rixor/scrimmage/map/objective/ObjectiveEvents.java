@@ -7,6 +7,7 @@ import com.projectrixor.rixor.scrimmage.map.extras.SidebarType;
 import com.projectrixor.rixor.scrimmage.api.BlockChangeEvent;
 import com.projectrixor.rixor.scrimmage.api.PlayerDiedEvent;
 import com.projectrixor.rixor.scrimmage.player.Client;
+import com.projectrixor.rixor.scrimmage.utils.ConversionUtil;
 import com.projectrixor.rixor.scrimmage.utils.FireworkUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.FireworkEffect;
@@ -163,8 +164,8 @@ public class ObjectiveEvents implements Listener {
 		}
 
 		String who = client.getTeam().getColor() + client.getPlayer().getName();
-		String placed = ChatColor.GRAY + " placed the " + wool.getName().toUpperCase();
-		String team = ChatColor.GRAY + " WOOL for " + client.getTeam().getColor() + client.getTeam().getDisplayName();
+		String placed = ChatColor.GRAY + " placed the " + ConversionUtil.convertWoolNameToChatColor(wool.getName() + " wool") + wool.getName().toUpperCase();
+		String team = " WOOL"  + ChatColor.GRAY + " for " + client.getTeam().getColor() + client.getTeam().getDisplayName();
 		String message = who + placed + team;
 		Rixor.broadcast(message);
 		wool.setComplete(true, client.getTeam());
