@@ -4,7 +4,6 @@ import com.projectrixor.rixor.scrimmage.Rixor;
 import com.projectrixor.rixor.scrimmage.map.Map;
 import com.projectrixor.rixor.scrimmage.map.MapLoader;
 import com.projectrixor.rixor.scrimmage.utils.RegionUtil;
-import lombok.NonNull;
 import org.bukkit.Location;
 import org.dom4j.Element;
 
@@ -35,7 +34,7 @@ public class Region {
 		this.regions = region.getRegions();
 	}
 	
-	public Region(Map map, List<Element> elements, @NonNull RegionType type) {
+	public Region(Map map, List<Element> elements, RegionType type) {
 		this.map = map;
 		regions = new ArrayList<ConfiguredRegion>();
 		this.elements = new ArrayList<Element>();
@@ -88,7 +87,7 @@ public class Region {
 	/*
 	 * The element variable is actually the root element - pretty obvious from the code...
 	 */
-	public Region(Map map, Element element, @NonNull RegionType type) {
+	public Region(Map map, Element element, RegionType type) {
 		MAX_BUILD_HEIGHT = Rixor.getInstance().getServer().getWorlds().get(0).getMaxHeight();
 		regions = new ArrayList<ConfiguredRegion>();
 		this.map = map;
