@@ -17,7 +17,7 @@ Todo List
 
 Setting up Rixor
 ---------------
-Go [7] for a full tutorial on how to setup Rixor on your own server. 
+Go [here] [7] for a full tutorial on how to setup Rixor on your own server. 
 
 [PRE] Compiling your own version of ParaPGM (for developers only!)
 -------------------------------------------
