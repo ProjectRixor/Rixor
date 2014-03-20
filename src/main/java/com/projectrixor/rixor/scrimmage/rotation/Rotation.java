@@ -63,18 +63,9 @@ public class Rotation {
 
 		
 		List<RotationSlot> rotation = getRotation();
-		slot.load().getMap().getName();
-		//rotation.remove(current);
+
 		rotation.add(current - rotation.size() + 1, slot);
-
-		for (RotationSlot s : rotation){
-			s.load();
-			Rixor.getInstance().getLogger().info(s.getMap().getName());
-		}
-
-		Rixor.getInstance().getLogger().info(getNext().getMap().getName());
-
-
+		rotation.remove(current - 3);
 		this.rotation = rotation;
 	}
 	
@@ -97,8 +88,9 @@ public class Rotation {
 		int current = getLocation(getSlot());
 		
 		try {
-			return getSlot(current);
+			return getSlot(current - rotation.size());
 		} catch(IndexOutOfBoundsException ioobe) {
+			Rixor.getInstance().getLogger().info(ioobe.getMessage());
 			return null;
 		}
 	}
