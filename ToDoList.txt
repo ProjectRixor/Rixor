@@ -1,0 +1,15 @@
+===============================================================
+To Do List:
+
+[ ] - Create Map XML Templates to download for all gametypes.
+[ ] - Add support for Smash
+[ ] - Add support for Free For All
+[ ] - Fix /help and other various commands.
+[ ] - XML Parsing of Filters
+[ ] - Filters that actually have connected events
+[ ] - Add Blitz support
+[X] - Add the Rage module
+[X] - Add support for Gear maps (not tested)
+[X] - CORES!
+
+===============================================================
