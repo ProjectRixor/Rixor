@@ -1,4 +1,4 @@
-Rixor
+Rixor (discontinued)
 ==================
 
 Overcast Scrimmage plugin utilising the OCN XML system!
