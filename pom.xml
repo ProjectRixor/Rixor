@@ -10,6 +10,12 @@
     <description>A scrimmage plugin based off of PGM's XML system</description>
     <dependencies>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.12.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>command-framework-core</artifactId>
             <version>0.5-SNAPSHOT</version>
